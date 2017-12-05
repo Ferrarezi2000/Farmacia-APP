@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="br.net.sumicity.sacapp" version="0.1.7" xmlns="http://www.w3.org/ns/widgets">
+    <name>Sumicity</name>
+    <description>Sumicity, inovando para simplificar a sua vida!</description>
+    <author email="nds.sumicity@gmail.com" href="http://www.sumicity.com.br">NDS Sumicity</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="BackgroundColor" value="0xF2F2F2FF" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="FadeSplashScreenDuration" value="2000" />
+    <preference name="android-minSdkVersion" value="19" />
+    <feature name="StatusBar">
+        <param name="ios-package" onload="true" value="CDVStatusBar" />
+    </feature>
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon qualifier="ldpi" src="icones/icon/android/SumicityAPP-icon-36x36.png" />
+        <icon qualifier="mdpi" src="icones/icon/android/SumicityAPP-icon-48x48.png" />
+        <icon qualifier="hdpi" src="icones/icon/android/SumicityAPP-icon-72x72.png" />
+        <icon qualifier="xhdpi" src="icones/icon/android/SumicityAPP-icon-96x96.png" />
+        <icon qualifier="xxhdpi" src="icones/icon/android/SumicityAPP-icon-144x144.png" />
+        <icon qualifier="xxxhdpi" src="icones/icon/android/SumicityAPP-icon-192x192.png" />
+        <splash density="land-ldpi" src="icones/splash/android/SumicityAPP-startpage-320x240.png" />
+        <splash density="land-mdpi" src="icones/splash/android/SumicityAPP-startpage-480x320.png" />
+        <splash density="land-hdpi" src="icones/splash/android/SumicityAPP-startpage-800x480.png" />
+        <splash density="port-ldpi" src="icones/splash/android/SumicityAPP-startpage-240x320.png" />
+        <splash density="port-mdpi" src="icones/splash/android/SumicityAPP-startpage-320x480.png" />
+        <splash density="port-hdpi" src="icones/splash/android/SumicityAPP-startpage-480x800.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="114" src="icones/icon/ios/icon-2x.png" width="114" />
+        <icon height="80" src="icones/icon/ios/icon-40-2x.png" width="80" />
+        <icon height="40" src="icones/icon/ios/icon-40.png" width="40" />
+        <icon height="100" src="icones/icon/ios/icon-50-2x.png" width="100" />
+        <icon height="50" src="icones/icon/ios/icon-50.png" width="50" />
+        <icon height="120" src="icones/icon/ios/icon-60-2x.png" width="120" />
+        <icon height="180" src="icones/icon/ios/icon-60-3x.png" width="180" />
+        <icon height="144" src="icones/icon/ios/icon-72-2x.png" width="144" />
+        <icon height="60" src="icones/icon/ios/icon-60.png" width="60" />
+        <icon height="72" src="icones/icon/ios/icon-72.png" width="72" />
+        <icon height="152" src="icones/icon/ios/icon-76-2x.png" width="152" />
+        <icon height="76" src="icones/icon/ios/icon-76.png" width="76" />
+        <icon height="58" src="icones/icon/ios/icon-small-2x.png" width="58" />
+        <icon height="29" src="icones/icon/ios/icon-small.png" width="29" />
+        <icon height="57" src="icones/icon/ios/icon.png" width="57" />
+        <splash height="480" src="icones/splash/ios/SumicityAPP-startpage-320x480.png" width="320" />
+        <splash height="960" src="icones/splash/ios/SumicityAPP-startpage-640x960.png" width="640" />
+        <splash height="1136" src="icones/splash/ios/SumicityAPP-startpage-640x1136.png" width="640" />
+        <splash height="1024" src="icones/splash/ios/SumicityAPP-startpage-768x1024.png" width="768" />
+        <splash height="1334" src="icones/splash/ios/SumicityAPP-startpage-750x1334.png" width="750" />
+        <splash height="2208" src="icones/splash/ios/SumicityAPP-startpage-1242x2208.png" width="1242" />
+        <splash height="2048" src="icones/splash/ios/SumicityAPP-startpage-1536x2048.png" width="1536" />
+    </platform>
+    <icon src="icones/icon/drawable-xhdpi-icon.png" />
+    <engine name="ios" spec="^4.4.0" />
+    <plugin name="cordova-plugin-network-information" spec="~1.3.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="4.0.2" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#1565C0" />
+    <preference name="StatusBarStyle" value="default" />
+    <plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
+</widget>

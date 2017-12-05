@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Sumicity</title>
+
+    <link rel="stylesheet" href="fonts/roboto.css">
+    <link rel="stylesheet" href="icons/material.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/vue-material.css">
+</head>
+<body>
+<div id="app"></div>
+<script src="cordova.js"></script>
+<script src="dist/build.js"></script>
+
+<script type="text/javascript">
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady(){
+        StatusBar.overlaysWebView(false);
+        StatusBar.backgroundColorByHexString('#1565C0');
+    }
+</script>
+</body>
+</html>

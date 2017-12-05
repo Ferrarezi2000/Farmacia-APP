@@ -1,0 +1,14 @@
+## Instalação das dependências
+> npm install
+
+## Comando para gerar o certificado de release android (requer java instalado):
+> keytool -genkey -v -keystore key-release.keystore -alias phonegap_builld -keyalg RSA -keysize 2048 -validity 10000
+
+## Endpoits
+/cliente/login
+/cliente
+/contrato/find_all
+/contrato/{id}
+/contrato/desbloqueio
+/fatura/find_all
+/fatura/{id}
