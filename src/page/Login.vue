@@ -61,7 +61,7 @@
                     <md-card-actions>
                         <md-layout md-align="start">
                             <router-link to="/recuperarSenha">
-                                <span>Esqueci minha senha</span>
+                                <span>Esqueci minha senha0000</span>
                             </router-link>
                         </md-layout>
                     </md-card-actions>
@@ -78,25 +78,25 @@
     </div>
 </template>
 <script>
-    import ClienteService from '../service/ClienteService';
+    import { C } from '../constantes'
 
     export default {
         created() {
-            this.service = new ClienteService();
-            this.usuario.login = localStorage.getItem('login');
+            this.data = new Date()
+            this.carregarPlantao()
         },
         data() {
-            return {usuario: {login: '', senha: ''}}
+            return {
+                data: {},
+                farmacias: []
+            }
         },
         methods: {
-            logar: function () {
-                this.$refs.aviso.carregar();
-
-                this.$http.post('cliente/login', this.usuario, {headers: {profile: 'producao'}}).then(response => {
-                    this.service.login(response.body);
-                    this.$router.push('/dashboard');
-                }, response => {
-                    this.$refs.aviso.abrir(response);
+            carregarPlantao() {
+                console.log('passou')
+                this.$http.post(C.URL.PLANTAO.PORDIA, this.data).then(res => {
+                    this.farmacias = res.body
+                    console.log(this.farmacias)
                 });
             }
         }

@@ -5,6 +5,8 @@ import {routes} from './routes';
 import VueMaterial from 'vue-material';
 import VueResource from 'vue-resource';
 import VueMask from 'v-mask';
+import VueMoment from 'vue-moment'
+import moment from 'moment'
 
 import Aviso from './component/Aviso.vue';
 
@@ -12,6 +14,7 @@ Vue.use(VueRouter);
 Vue.use(VueMaterial);
 Vue.use(VueResource);
 Vue.use(VueMask);
+Vue.use(VueMoment, {moment})
 
 Vue.component('air-aviso', Aviso);
 
