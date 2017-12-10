@@ -65,12 +65,12 @@
         <splash height="2048" src="icones/splash/ios/SumicityAPP-startpage-1536x2048.png" width="1536" />
     </platform>
     <icon src="icones/icon/drawable-xhdpi-icon.png" />
-    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-network-information" spec="~1.3.2" />
     <plugin name="cordova-plugin-splashscreen" spec="4.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#FF0000" />
     <preference name="StatusBarStyle" value="default" />
-    <plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
+    <plugin source="git" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
+    <engine name="ios" spec="^4.4.0" />
 </widget>
