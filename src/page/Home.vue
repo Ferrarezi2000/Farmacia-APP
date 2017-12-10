@@ -14,7 +14,8 @@
             </md-card-header>
 
              <md-card-media style="height: 10%; margin: 15px; text-align: center">
-                 <img :src="'../dist/' + p.farmacia.codigo + '.png'" alt="logo" style="width: 80%">
+                 <!--<img :src="'../dist/' + p.farmacia.codigo + '.png'" alt="logo" style="width: 80%">-->
+                 <img src="https://www.toptotal.com.br/media/com_jbusinessdirectory/pictures/companies/200/logotipofarmavipdrogariadopio-1468555129.png" alt="logo" style="width: 80%">
                  <!--<img src="../assets/1.png" alt="logo" style="width: 80%">-->
              </md-card-media>
              <md-card-header class="contato"

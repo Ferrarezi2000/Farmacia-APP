@@ -70,7 +70,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="4.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#1565C0" />
+    <preference name="StatusBarBackgroundColor" value="#FF0000" />
     <preference name="StatusBarStyle" value="default" />
     <plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
 </widget>
