@@ -12,7 +12,7 @@
             </div>
         </md-toolbar>
 
-        <md-subheader class="nome" style="min-height: 30px"> {{ this.dataAtual | moment("DD/MM/YYYY") }} </md-subheader>
+        <md-subheader class="nome" style="min-height: 30px"> {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}h </md-subheader>
 
         <div class="subtitulo md-title" v-if="titulo">
             <md-icon>{{ icone }}</md-icon>
@@ -100,7 +100,7 @@
 </script>
 <style scoped>
     .corMenu {background-color: red !important;}
-    .nome {color: #607D8B; background: #ECEFF1}
+    .nome {color: white; background: lightsalmon}
     .subtitulo {padding-left: .5em; margin: .5em; color: #1976D2}
     .sair {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: right; border-top: 1px solid #ECEFF1}
 </style>

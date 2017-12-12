@@ -8,18 +8,14 @@ import VueMask from 'v-mask';
 import VueMoment from 'vue-moment'
 import moment from 'moment'
 
-import Aviso from './component/Aviso.vue';
+moment.locale('pt-BR')
+
 
 Vue.use(VueRouter);
 Vue.use(VueMaterial);
 Vue.use(VueResource);
 Vue.use(VueMask);
 Vue.use(VueMoment, {moment})
-
-Vue.component('air-aviso', Aviso);
-
-Vue.http.options.root = 'http://api-sac.sumicity.net.br';
-// Vue.http.options.root = 'http://127.0.0.1:9000';
 
 Vue.material.registerTheme({
     sumicity: {

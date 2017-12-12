@@ -3,14 +3,25 @@
         <air-menu/>
 
          <md-card class="container" v-for="p in plantoes">
-            <md-card-header>
+            <md-card-header class="cabecalho">
                 <md-avatar>
                     <img src="../assets/cruz.png" alt="Avatar">
                 </md-avatar>
 
-                <div class="md-title">{{ p.farmacia.nome }} - <span class="localidade">{{p.farmacia.localidade}}</span></div>
+                <div class="md-title" style="width: 100%">{{ p.farmacia.nome }} - <span class="localidade">{{p.farmacia.localidade}}</span>
+                    <span style="float: right; color: green; text-align: center" v-if="controleHora">
+                        <md-icon>bookmark</md-icon><br/>
+                        <span style="font-size: 10px">Aberto</span>
+                    </span>
+
+                    <span style="float: right; color: red; text-align: center" v-else>
+                        <md-icon>bookmark</md-icon><br/>
+                        <span style="font-size: 10px">Fechado</span>
+                    </span>
+                </div>
                 <div class="md-subhead">{{ p.farmacia.endereco.logradouro }} - {{ p.farmacia.endereco.bairro }},
                     Nº {{ p.farmacia.endereco.numero }}</div>
+
             </md-card-header>
 
              <md-card-media style="height: 10%; margin: 15px; text-align: center">
@@ -23,7 +34,7 @@
                  Contatos
              </md-card-header>
 
-             <md-card-header v-for="c in p.farmacia.contatos"
+             <md-card-header v-for="c in p.farmacia.contatos" class="cabecalho"
                              style="padding: 5px !important; padding-left: 16px !important;">
                  <md-avatar>
                      <md-icon class="md-primary">phone</md-icon>
@@ -52,11 +63,22 @@
             return {
                 dto: {data: null},
                 plantoes: [],
-                src: '01'
+                src: '01',
+                data: null,
+                controleHora: true
             }
         },
         methods: {
             carregarPlantao() {
+                this.data = new Date()
+                let hora = this.data.getHours()
+                let minutos = this.data.getMinutes()
+                if (hora === 22) {
+                    if (hora < 8) {
+                        console.log('passou')
+                        this.controleHora = false
+                    }
+                }
                 this.$http.post(C.URL.PLANTAO.PORDIA, this.dto).then(res => {
                     this.plantoes = res.body
                 });
@@ -65,10 +87,12 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
+    body {background-color: lightyellow}
     .rodape {background-color: red; color: white; font-size: 12px; padding: 8px; margin-top: 3%}
     .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
     .localidade {font-size: 12px; color: darkgray}
-    .home {height: 100%; background: white}
+    .home {height: 100%; background: lightyellow}
     .contato {color: darkred; font-weight: bold}
+    .cabecalho {background-color: lightgoldenrodyellow}
 </style>
