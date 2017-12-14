@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.net.sumicity.sacapp" version="0.1.7" xmlns="http://www.w3.org/ns/widgets">
-    <name>Sumicity</name>
-    <description>Sumicity, inovando para simplificar a sua vida!</description>
-    <author email="nds.sumicity@gmail.com" href="http://www.sumicity.com.br">NDS Sumicity</author>
+<widget id="br.com.farmacia" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Farmacia</name>
+    <description>Aplicativo para Farmácias de Plantão!</description>
+    <author email="ferrarezi_alem@yahoo.com.br">Thiago Ferrarezi</author>
     <content src="index.html" />
     <access origin="*" />
     <preference name="Orientation" value="portrait" />

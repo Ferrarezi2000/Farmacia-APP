@@ -18,13 +18,13 @@ Vue.use(VueMask);
 Vue.use(VueMoment, {moment})
 
 Vue.material.registerTheme({
-    sumicity: {
+    tema: {
         primary: { color: 'blue', hue: 700 },
         accent : { color: 'orange', hue: 800 },
         warn  : { color: 'red', hue: 700 }
     }
 });
-Vue.material.setCurrentTheme('sumicity');
+Vue.material.setCurrentTheme('tema');
 
 const router = new VueRouter({routes});
 new Vue({

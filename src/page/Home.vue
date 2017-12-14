@@ -2,7 +2,7 @@
     <div class="home">
         <air-menu/>
 
-         <md-card class="container" v-for="p in plantoes">
+         <md-card class="container" v-for="p in plantoes" :key = "p.id">
             <md-card-header class="cabecalho">
                 <md-avatar>
                     <img src="../assets/cruz.png" alt="Avatar">
@@ -34,7 +34,7 @@
                  Contatos
              </md-card-header>
 
-             <md-card-header v-for="c in p.farmacia.contatos" class="cabecalho"
+             <md-card-header v-for="c in p.farmacia.contatos" :key = "c.id" class="cabecalho"
                              style="padding: 5px !important; padding-left: 16px !important;">
                  <md-avatar>
                      <md-icon class="md-primary">phone</md-icon>

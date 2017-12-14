@@ -1,6 +1,3 @@
-# air-sac-app
-
-> Aplicativo Sumicity para o SAC
 
 ## Build Setup
 
