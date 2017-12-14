@@ -3,14 +3,18 @@
 
         <md-button class="md-raised" @click="fechar()">Home</md-button>
         <pre>{{propaganda}}</pre>
+
+        <menu-inferior/>
+
     </div>
 </template>
 
 <script>
     import { C } from '../constantes'
-    import Menu from '../component/Menu.vue';
+    import MenuInferior from '../component/MenuInferior.vue';
 
     export default{
+        components: {MenuInferior},
         created () {
             // this.dto.data = new Date()
             this.carregarPropaganda()
@@ -43,7 +47,7 @@
 </script>
 
 <style scoped lang="scss">
-    .rodape {background-color: red; color: white; font-size: 12px; padding: 8px; margin-top: 3%}
+    .rodape {background-color: red; color: white}
     .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
     .localidade {font-size: 12px; color: darkgray}
     .home {height: 100%; background: white}

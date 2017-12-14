@@ -2,7 +2,7 @@
     <div class="home">
         <air-menu/>
 
-         <md-card class="container" v-for="p in plantoes" :key = "p.id">
+         <md-card class="container" v-for="(p, index) in plantoes" :key = "p.id" :class="{'ultimo' : plantoes.length === index + 1}">
             <md-card-header class="cabecalho">
                 <md-avatar>
                     <img src="../assets/cruz.png" alt="Avatar">
@@ -45,16 +45,18 @@
              </md-card-header>
          </md-card>
 
-        <div class="rodape">Stand By - Soluções em Informática</div>
+        <menu-inferior/>
+
     </div>
 </template>
 
 <script>
     import { C } from '../constantes'
     import Menu from '../component/Menu.vue';
+    import MenuInferior from '../component/MenuInferior.vue'
 
     export default{
-        components: {'air-menu': Menu},
+        components: {'air-menu': Menu, MenuInferior},
         created () {
             this.dto.data = new Date()
             this.carregarPlantao()
@@ -88,11 +90,10 @@
 </script>
 
 <style scoped>
-    body {background-color: lightyellow}
-    .rodape {background-color: red; color: white; font-size: 12px; padding: 8px; margin-top: 3%}
+    .ultimo {margin-bottom: 70px}
     .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
     .localidade {font-size: 12px; color: darkgray}
-    .home {height: 100%; background: lightyellow}
+    .home {height: 100%}
     .contato {color: darkred; font-weight: bold}
     .cabecalho {background-color: lightgoldenrodyellow}
 </style>

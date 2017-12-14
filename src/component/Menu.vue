@@ -12,17 +12,17 @@
             </div>
         </md-toolbar>
 
-        <md-subheader class="nome" style="min-height: 30px"> {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}h </md-subheader>
+        <md-subheader class="nome" style="min-height: 30px">
+            {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
+        </md-subheader>
 
-        <div class="subtitulo md-title" v-if="titulo">
-            <md-icon>{{ icone }}</md-icon>
-            {{ titulo }}
-
-        </div>
-
+        <!--<div class="subtitulo md-title" v-if="titulo">-->
+            <!--<md-icon>{{ icone }}</md-icon>-->
+            <!--{{ titulo }}-->
+        <!--</div>-->
 
         <md-sidenav :md-swipeable="true" class="md-left" ref="nav">
-            <md-toolbar class="md-large">
+            <md-toolbar class="md-large" style="background-color: red; color: white">
                 <div>
                     <!--<h3 class="md-title">{{ cliente.nome }}</h3>-->
                     <!--<p> Tel: {{ cliente.telefone }} <br/> Email: {{ cliente.email }} </p>-->
@@ -34,62 +34,54 @@
                     <md-subheader>Navegar no APP</md-subheader>
 
                     <md-list-item>
-                        <router-link to="/dashboard">
+                        <router-link to="/home">
                             <md-icon>home</md-icon>
-                            <span>Início</span>
+                            <span>Plantão do Dia</span>
                         </router-link>
                     </md-list-item>
 
                     <md-list-item>
-                        <router-link to="/cliente">
-                            <md-icon>account_box</md-icon>
-                            <span>Dados Cadastrais</span>
+                        <router-link to="/plantoes">
+                            <md-icon>date_range</md-icon>
+                            <span>Plantões do Mês</span>
                         </router-link>
                     </md-list-item>
 
                     <md-list-item>
-                        <router-link to="/contrato">
-                            <md-icon>description</md-icon>
-                            <span>Contratos</span>
+                        <router-link to="/farmacias/vip">
+                            <md-icon>star_rate</md-icon>
+                            <span>Farmácias VIP</span>
                         </router-link>
                     </md-list-item>
 
                     <md-list-item>
-                        <router-link to="/boleto">
-                            <md-icon>event_available</md-icon>
-                            <span>Boletos</span>
-                        </router-link>
-                    </md-list-item>
-
-                    <md-list-item>
-                        <router-link to="/alterarSenha">
-                            <md-icon>lock</md-icon>
-                            <span>Alterar Senha</span>
+                        <router-link to="/patrocinadores">
+                            <md-icon>assignment_turned_in</md-icon>
+                            <span>Patrocinadores</span>
                         </router-link>
                     </md-list-item>
                 </md-list>
             </div>
 
-            <div class="sair">
-                <md-button @click.native="sair">
-                    <md-icon>exit_to_app</md-icon>
-                    Sair
-                </md-button>
+            <div class="stand">
+                <span>Stand By - Soluções em Informática</span>
             </div>
         </md-sidenav>
     </div>
 </template>
 
 <script>
-    import ClienteService from '../service/ClienteService';
 
     export default{
-        props: ['titulo', 'icone'],
         created() {
             this.dataAtual = new Date()
         },
         data() {
-            return {dataAtual: null}
+            return {
+                dataAtual: null,
+                titulo: 'Farmácias',
+                icone: 'add'
+            }
         },
         methods: {
             openNav () {
@@ -102,5 +94,6 @@
     .corMenu {background-color: red !important;}
     .nome {color: white; background: lightsalmon}
     .subtitulo {padding-left: .5em; margin: .5em; color: #1976D2}
-    .sair {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: right; border-top: 1px solid #ECEFF1}
+    .stand {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: left;
+        border-top: 1px solid #ECEFF1; color: white; background-color: red}
 </style>

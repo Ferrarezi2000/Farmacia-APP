@@ -8,6 +8,7 @@ import VueMask from 'v-mask';
 import VueMoment from 'vue-moment'
 import moment from 'moment'
 
+
 moment.locale('pt-BR')
 
 

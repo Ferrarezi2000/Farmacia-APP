@@ -12,8 +12,8 @@ export const C = {
     PLANTAO: {
       BASE: 'http://localhost:5000/plantao/',
       DELETE: 'http://localhost:5000/plantao/deletar/',
-      PORMES: 'http://localhost:5000/plantao/plantoes/',
-      PORDIA: 'http://localhost:5000/plantao/plantoes/dia'
+      PORDIA: 'http://localhost:5000/plantao/plantoes/dia',
+      PORMES: 'http://localhost:5000/plantao/plantoes/mes'
     },
     PATROCINADOR: {
       BASE: 'http://localhost:5000/patrocinador/',
