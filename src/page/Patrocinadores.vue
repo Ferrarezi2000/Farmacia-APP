@@ -7,8 +7,8 @@
         <menu-superior/>
 
         <div class="container">
-            <md-card class="card-example" v-for="(item, index) in farmacias" :key="item.id" style="margin-bottom: 15px"
-                     :class="{'ultimo' : farmacias.length === index + 1}">
+            <md-card class="card-example" v-for="(item, index) in patrocinadores" :key="item.id" style="margin-bottom: 15px"
+                     :class="{'ultimo' : patrocinadores.length === index + 1}">
                 <md-card-area md-inset>
                     <md-card-media md-ratio="16:9">
                         <img src="http://www.petcidade.com.br/wp-content/uploads/2016/09/cachorro-tenta-pegar-petisco-imagem-1-reproducao.jpg"
@@ -69,13 +69,13 @@
         },
         data () {
             return {
-                farmacias: []
+                patrocinadores: []
             }
         },
         methods: {
             listarVip() {
-                this.$http.get(C.URL.FARMACIA.VIP).then(res => {
-                    this.farmacias = res.body
+                this.$http.get(C.URL.PATROCINADOR.BASE).then(res => {
+                    this.patrocinadores = res.body
                     console.log(res.body)
                 })
             }
