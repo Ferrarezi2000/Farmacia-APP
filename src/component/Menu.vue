@@ -1,7 +1,6 @@
 <template>
     <div>
-        <md-toolbar class="corMenu">
-
+        <md-toolbar class="corMenu menu">
             <md-button class="md-icon-button" @click.native="openNav">
                 <md-icon>menu</md-icon>
             </md-button>
@@ -12,20 +11,13 @@
             </div>
         </md-toolbar>
 
-        <md-subheader class="nome" style="min-height: 30px">
-            {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
-        </md-subheader>
-
-        <!--<div class="subtitulo md-title" v-if="titulo">-->
-            <!--<md-icon>{{ icone }}</md-icon>-->
-            <!--{{ titulo }}-->
-        <!--</div>-->
-
         <md-sidenav :md-swipeable="true" class="md-left" ref="nav">
             <md-toolbar class="md-large" style="background-color: red; color: white">
-                <div>
-                    <!--<h3 class="md-title">{{ cliente.nome }}</h3>-->
-                    <!--<p> Tel: {{ cliente.telefone }} <br/> Email: {{ cliente.email }} </p>-->
+                <div style="text-align: center">
+                    <md-avatar class="md-large">
+                        <img src="../assets/cruz.png" alt="People">
+                    </md-avatar>
+                    <h3 class="md-title">Plantão de Farmácias</h3>
                 </div>
             </md-toolbar>
 
@@ -73,9 +65,7 @@
 <script>
 
     export default{
-        created() {
-            this.dataAtual = new Date()
-        },
+        created() {},
         data() {
             return {
                 dataAtual: null,
@@ -91,9 +81,8 @@
     }
 </script>
 <style scoped>
+    .menu {z-index: 2 !important; position: fixed !important; top: 0px !important; width: 100% !important;}
     .corMenu {background-color: red !important;}
-    .nome {color: white; background: lightsalmon}
-    .subtitulo {padding-left: .5em; margin: .5em; color: #1976D2}
     .stand {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: left;
         border-top: 1px solid #ECEFF1; color: white; background-color: red}
 </style>

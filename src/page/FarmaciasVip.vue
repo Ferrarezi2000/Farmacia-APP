@@ -1,13 +1,19 @@
 <style scoped>
-    .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
+    .container {margin-left: 8%; margin-right: 8%; padding-top: 5px !important;}
     .ultimo {margin-bottom: 70px !important;}
+    .nome {color: white; background: lightsalmon; min-height: 30px; padding-top: 68px; padding-bottom: 5px}
 </style>
 <template>
     <div>
         <menu-superior/>
 
+        <md-subheader class="nome">
+            {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
+        </md-subheader>
+
         <div class="container">
-            <md-card class="card-example" v-for="(item, index) in farmacias" :key="item.id" style="margin-bottom: 15px"
+            <md-card class="card-example" v-for="(item, index) in farmacias" :key="item.id"
+                     style="margin-bottom: 15px"
                      :class="{'ultimo' : farmacias.length === index + 1}">
                 <md-card-area md-inset>
                     <md-card-media md-ratio="16:9">
@@ -66,9 +72,11 @@
         components: {MenuSuperior, MenuInferior},
         created () {
             this.listarVip()
+            this.dataAtual = new Date()
         },
         data () {
             return {
+                data: null,
                 farmacias: []
             }
         },
