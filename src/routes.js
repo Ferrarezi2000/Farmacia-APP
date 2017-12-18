@@ -6,6 +6,7 @@ import Farmacias from './page/Farmacias.vue';
 import FarmaciasInfo from './page/FarmaciasInfo.vue';
 import PatrocinadorInfo from './page/PatrocinadorInfo.vue';
 import Patrocinadores from './page/Patrocinadores.vue';
+import Comentario from './page/Comentar.vue';
 
 export const routes = [
     { path: '/', redirect: '/propagandasDia' },
@@ -15,6 +16,7 @@ export const routes = [
     { path: '/farmacias/vip', component: FarmaciasVip },
     { path: '/farmacias/info/:id', component: FarmaciasInfo },
     { path: '/patrocinadores/info/:id', component: PatrocinadorInfo },
+    { path: '/comentar/:id', component: Comentario },
     { path: '/farmacias', component: Farmacias },
     { path: '/patrocinadores', component: Patrocinadores },
 
