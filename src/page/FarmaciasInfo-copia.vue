@@ -1,9 +1,8 @@
 <style scoped>
     .ultimo {margin-bottom: 50px !important;}
     .container { padding-top: 64px }
-    h3 {color: darkred; background-color: lightgrey; padding: 5px}
+    h3 {color: darkred}
     .nEstrelas {font-size: 12px; margin-top: 3px; margin-left: 10px}
-    .md-divider {height: 0.5px !important}
 </style>
 <template>
     <div>
@@ -18,11 +17,13 @@
                              alt="Coffee House">
                     </md-card-media>
 
-                        <h2 class="md-title" style="margin-left: 18px; font-weight: bold; font-size: 20px">{{ farmacia.farmaciaNome }}</h2>
-                        <!--<div class="md-subhead">-->
-                            <!--<md-icon>location_on</md-icon>-->
-                            <!--<span>{{ farmacia.enderecoLogradouro }}, Nº {{ farmacia.enderecoNumero }} - {{ farmacia.enderecoBairro }}</span>-->
-                        <!--</div>-->
+                    <md-card-header>
+                        <h2 class="md-title">{{ farmacia.farmaciaNome }}</h2>
+                        <div class="md-subhead">
+                            <md-icon>location_on</md-icon>
+                            <span>{{ farmacia.enderecoLogradouro }}, Nº {{ farmacia.enderecoNumero }} - {{ farmacia.enderecoBairro }}</span>
+                        </div>
+                    </md-card-header>
 
                     <md-card-content>
                         {{ farmacia.farmaciaTexto }}
@@ -30,84 +31,36 @@
                 </md-card-area>
 
                 <md-card-content>
-                    <!--<h3 class="md-subheading">Funcionamento</h3>-->
+                    <h3 class="md-subheading">Funcionamento</h3>
+                    <md-table>
+                        <md-table-body>
+                            <md-table-row>
+                                <md-table-cell>
+                                    <md-icon style="color: grey; font-size: 20px; margin-top: 7px">access_time</md-icon>
+                                </md-table-cell>
+                                <md-table-cell style="font-size: 14px">
+                                    <span>{{ farmacia.farmaciaHoraAbrir }} horas às </span>
+                                    <span>{{ farmacia.farmaciaHoraFechar }} horas</span>
+                                </md-table-cell>
+                            </md-table-row>
+                        </md-table-body>
+                    </md-table>
 
-                    <md-list>
-                        <md-list-item>
-                            <md-icon>phone</md-icon>
-                            <span>Contatos</span>
-
-                            <md-list-expand>
-                                <md-list>
-                                    <md-list-item class="md-inset" v-for="item in farmacia.contatos" :key="item.id">
-                                        {{ item.texto }} - {{ item.tipo }}
-                                    </md-list-item>
-                                </md-list>
-                            </md-list-expand>
-                        </md-list-item>
-                        <md-divider/>
-
-                        <md-list-item>
-                            <md-icon>location_on</md-icon>
-                            <span>Endereço</span>
-
-                            <md-list-expand>
-                                <md-list>
-                                    <md-list-item class="md-inset">
-                                        {{ farmacia.enderecoLogradouro }}, Nº {{ farmacia.enderecoNumero }}
-                                    </md-list-item>
-                                    <md-list-item class="md-inset">
-                                        {{ farmacia.enderecoBairro }}
-                                    </md-list-item>
-                                </md-list>
-                            </md-list-expand>
-                        </md-list-item>
-                        <md-divider/>
-
-                        <md-list-item>
-                            <md-icon>access_time</md-icon>
-                            <span>Funcionamento</span>
-
-                            <md-list-expand>
-                                <md-list>
-                                    <md-list-item class="md-inset">
-                                        {{ farmacia.farmaciaHoraAbrir }} horas às {{ farmacia.farmaciaHoraFechar }} horas
-                                    </md-list-item>
-                                </md-list>
-                            </md-list-expand>
-                        </md-list-item>
-                        <md-divider/>
-
-
-                        <md-list-item>
-                            <md-icon>payment</md-icon>
-                            <span>Forma de Pagamento</span>
-
-                            <md-list-expand>
-                                <md-list>
-                                    <md-list-item class="md-inset">Dinheiro</md-list-item>
-                                    <md-list-item class="md-inset">Visa</md-list-item>
-                                    <md-list-item class="md-inset">Marter Card</md-list-item>
-                                </md-list>
-                            </md-list-expand>
-                        </md-list-item>
-                        <md-divider/>
-
-                    </md-list>
+                    <h3 class="md-subheading" style="margin-top: 20px">Contatos</h3>
+                    <md-table>
+                        <md-table-body>
+                            <md-table-row v-for="item in farmacia.contatos" :key="item.id">
+                                <md-table-cell>
+                                    <md-icon style="color: grey; font-size: 20px; margin-top: 7px">phone</md-icon>
+                                </md-table-cell>
+                                <md-table-cell style="font-size: 14px">{{ item.texto }} -
+                                    <span>{{ item.tipo }}</span>
+                                </md-table-cell>
+                            </md-table-row>
+                        </md-table-body>
+                    </md-table>
 
                     <h3 class="md-subheading" style="margin-top: 20px; margin-bottom: 15px">Avaliações</h3>
-                    <md-divider/>
-                    <md-list>
-                    <md-list-item @click="comentar()">
-                        <md-icon>chat_bubble_outline</md-icon>
-                        <span>Deixar minha avaliação</span>
-
-                        <md-button class="md-icon-button" @click="comentar()">
-                            <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                        </md-button>
-                    </md-list-item>
-                    </md-list>
-                    <md-divider style="margin-bottom: 10px"/>
 
                     <md-layout>
                         <md-layout style="margin-left: 40px; font-size: 30px; color: orange">
@@ -204,16 +157,26 @@
                             <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes1 }}</span>
                         </md-layout>
                     </md-layout>
-                    <md-divider style="margin-top: 10px"/>
+
+                    <md-table v-if="farmacia.farmaciaAvaliacoes.length > 0">
+                        <md-table-header>
+                            <md-table-row>
+                                <md-table-head>#</md-table-head>
+                                <md-table-head>Usuário</md-table-head>
+                                <md-table-head>Classificação</md-table-head>
+                            </md-table-row>
+                        </md-table-header>
 
 
-                    <md-list class="md-double-line md-dense">
-                        <div v-for="(a, index) in farmacia.farmaciaAvaliacoes" :key="a.id">
-                            <md-list-item>
-                                <md-icon>account_box</md-icon>
-
-                                <div class="md-list-text-container">
+                        <md-table-body>
+                            <md-table-row v-for="(a, index) in farmacia.farmaciaAvaliacoes" :key="a.id">
+                                <md-table-cell>
+                                    <span>{{ index + 1}}.</span>
+                                </md-table-cell>
+                                <md-table-cell style="font-size: 14px">
                                     <span>{{ a.usuarioNome }} {{ a.usuarioSobrenome }}</span>
+                                </md-table-cell>
+                                <md-table-cell>
                                     <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
                                                  v-bind:max-rating="5"
                                                  :show-rating="false"
@@ -223,15 +186,17 @@
                                                  active-color="#FFD700"
                                                  v-bind:star-size="15">
                                     </star-rating>
-                                </div>
+                                </md-table-cell>
 
-                                <span>{{ a.momento | moment("DD/MM/YYYY")}}</span>
-                            </md-list-item>
-                            <md-divider/>
-                        </div>
-                    </md-list>
+                            </md-table-row>
+                        </md-table-body>
+                    </md-table>
                 </md-card-content>
 
+                <md-button class="md-raised" style="width: 100%; background-color: red; color: white;
+                 margin: 0px !important; padding: 0px !important; margin-bottom: 10px"
+                           @click="comentar()">Avaliar
+                </md-button>
             </md-card>
 
         </div>
