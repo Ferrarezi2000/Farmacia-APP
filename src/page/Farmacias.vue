@@ -5,9 +5,11 @@
     <div>
         <menu-superior/>
 
+
+
         <div class="phone-viewport container">
             <md-list class="custom-list md-triple-line">
-                <md-list-item v-for="item in patrocinador" :key="item.id">
+                <md-list-item v-for="item in farmacias" :key="item.id">
                     <md-avatar>
                         <img src="https://placeimg.com/40/40/people/1" alt="People">
                     </md-avatar>
@@ -16,7 +18,7 @@
                         <span>{{ item.nome }}</span>
                         <span style="padding-top: 2px; margin-bottom: 2px">
                             <md-icon style="margin-right: 10px">location_on</md-icon>
-                            <span>{{ item.endereco.bairro }}</span>
+                            <span>{{ item.localidade }}</span>
                         </span>
                         <span style="padding-top: 2px; margin-bottom: 2px">
                             <md-icon style="margin-right: 10px">people</md-icon>
@@ -28,7 +30,7 @@
                     </div>
 
                     <md-button class="md-icon-button md-list-action">
-                        <router-link :to="'/patrocinadores/info/' + item.id">
+                        <router-link :to="'/farmacias/info/' + item.id">
                             <md-icon class="md-primary">keyboard_arrow_right</md-icon>
                         </router-link>
                     </md-button>
@@ -50,19 +52,19 @@
     export default {
         components: {MenuSuperior, MenuInferior},
         created () {
-            this.patrocinadores()
-            this.dataAtual = new Date()
+            this.listarVip()
         },
         data () {
             return {
                 rating6: 3,
-                patrocinador: []
+                farmacias: []
             }
         },
         methods: {
-            patrocinadores() {
-                this.$http.get(C.URL.PATROCINADOR.BASE).then(res => {
-                    this.patrocinador = res.body
+            listarVip() {
+                this.$http.get(C.URL.FARMACIA.VIP).then(res => {
+                    this.farmacias = res.body
+                    console.log(res.body)
                 })
             }
         }

@@ -5,7 +5,7 @@
 <template>
     <md-bottom-bar class="rodape">
         <md-bottom-bar-item md-icon="home" @click="home()" class="branco">Home</md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="star_rate" @click="vip()" class="branco">Farmácias VIP</md-bottom-bar-item>
+        <md-bottom-bar-item md-icon="add" @click="vip()" class="branco">Farmácias</md-bottom-bar-item>
         <md-bottom-bar-item md-icon="assignment_turned_in" @click="patrocinador()" class="branco">
             Patrocinadores
         </md-bottom-bar-item>
@@ -31,7 +31,7 @@
                 this.activeHome = false
                 this.activeVip = true
                 this.activePatrocinador = false
-                this.$router.push('/farmacias/vip')
+                this.$router.push('/farmacias')
             },
             patrocinador () {
                 this.activeHome = false

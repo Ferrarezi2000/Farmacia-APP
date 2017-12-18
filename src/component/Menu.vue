@@ -40,9 +40,9 @@
                     </md-list-item>
 
                     <md-list-item>
-                        <router-link to="/farmacias/vip">
-                            <md-icon>star_rate</md-icon>
-                            <span>Farmácias VIP</span>
+                        <router-link to="/farmacias">
+                            <md-icon>add</md-icon>
+                            <span>Farmácias</span>
                         </router-link>
                     </md-list-item>
 

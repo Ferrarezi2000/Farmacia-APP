@@ -2,6 +2,10 @@
     <div class="home">
         <air-menu/>
 
+        <md-subheader class="nome">
+            {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
+        </md-subheader>
+
          <md-card class="container" v-for="(p, index) in plantoes" :key = "p.id" :class="{'ultimo' : plantoes.length === index + 1}">
             <md-card-header class="cabecalho">
                 <md-avatar>
@@ -60,6 +64,7 @@
         created () {
             this.dto.data = new Date()
             this.carregarPlantao()
+            this.dataAtual = new Date()
         },
         data() {
             return {
@@ -77,7 +82,6 @@
                 let minutos = this.data.getMinutes()
                 if (hora === 22) {
                     if (hora < 8) {
-                        console.log('passou')
                         this.controleHora = false
                     }
                 }
@@ -90,6 +94,7 @@
 </script>
 
 <style scoped>
+    .nome {color: white; background: lightsalmon; min-height: 30px; padding-top: 68px; padding-bottom: 5px}
     .ultimo {margin-bottom: 70px}
     .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
     .localidade {font-size: 12px; color: darkgray}
