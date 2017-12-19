@@ -8,13 +8,14 @@
 
         <div class="container">
             <form novalidate @submit.stop.prevent="enviar()">
-                <star-rating style="margin-bottom: 5px; margin-left: 50px"
+                <star-rating style="margin-bottom: 5px"
                              v-bind:max-rating="5"
+                             v-bind:increment="0.5"
                              v-model="dto.valor"
                              :show-rating="false"
                              inactive-color="#DCDCDC"
                              active-color="#FFD700"
-                             v-bind:star-size="50">
+                             v-bind:star-size="80">
                 </star-rating>
                 <span v-if="mensagem" class="help is-danger" style="margin-left: 50px">{{ mensagem }}</span>
 
@@ -33,6 +34,11 @@
                 </md-input-container>
                 <span v-show="errors.has('usuarioSobrenome')" class="help is-danger"
                       style="margin-bottom: 20px">Sobrenome é obrigatório!</span>
+
+                <md-input-container>
+                    <label>Comentário</label>
+                    <md-textarea v-model="dto.comentario"/>
+                </md-input-container>
 
                 <md-button style="width: 100%; background-color: red; color: white;
                  margin: 0px !important; padding: 0px !important; margin-bottom: 10px"
@@ -56,7 +62,7 @@
                 horizontal: 'center',
                 mensagem: null,
                 duration: 4000,
-                dto: {usuarioNome: null, usuarioSobrenome: null, valor: null, farmaciaId: null, patrocinadorId: null}
+                dto: {usuarioNome: null, usuarioSobrenome: null, valor: null, farmaciaId: null, patrocinadorId: null, comentario: null}
             }
         },
         methods: {
@@ -64,9 +70,9 @@
                 this.$validator.validateAll().then(res => {
                     if (res) {
                         if (this.dto.valor) {
-                            this.dto.farmaciaId = this.$route.params.id
-                            this.$http.post(C.URL.COMENTAR.BASE, this.dto).then(res => {
-                                this.$router.push('/farmacias/info/' + this.$route.params.id)
+                            this.dto.patrocinadorId = this.$route.params.id
+                            this.$http.post(C.URL.AVALIACAO.BASE, this.dto).then(res => {
+                                this.$router.push('/patrocinadores/info/' + this.$route.params.id)
                             })
                         } else {
                             this.mensagem = 'Avaliação é obrigatório!'

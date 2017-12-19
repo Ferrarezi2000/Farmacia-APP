@@ -1,16 +1,18 @@
 <style scoped>
     .container {padding-top: 65px}
+    .nome {padding: 1px; font-size: 12px; color: white; background: black}
 </style>
 <template>
     <div>
         <menu-superior/>
 
         <div class="phone-viewport container">
+            <div class="nome" v-if="nomeLogado.nome">
+                <span>Olá, bem-vindo {{ nomeLogado.nome }}</span>
+            </div>
+
             <md-list class="custom-list md-triple-line">
                 <md-list-item v-for="item in farmacias" :key="item.id">
-                    <md-avatar>
-                        <img src="https://placeimg.com/40/40/people/1" alt="People">
-                    </md-avatar>
 
                     <div class="md-list-text-container">
                         <span>{{ item.nome }} - {{ item.localidade }}</span>
@@ -38,7 +40,7 @@
                             <md-icon class="md-primary">keyboard_arrow_right</md-icon>
                         </router-link>
                     </md-button>
-                    <md-divider class="md-inset"></md-divider>
+                    <md-divider/>
                 </md-list-item>
             </md-list>
         </div>
@@ -56,9 +58,13 @@
         components: {MenuSuperior, MenuInferior, Rating},
         created () {
             this.listarVip()
+            if (this.$store.state.logado) {
+                this.nomeLogado = this.$store.state.logado
+            }
         },
         data () {
             return {
+                nomeLogado: {nome: null},
                 farmacias: []
             }
         },

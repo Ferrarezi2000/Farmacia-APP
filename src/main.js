@@ -10,6 +10,7 @@ import moment from 'moment';
 import StarRating from 'vue-star-rating'
 import VueLocalStorage from 'vue-localstorage'
 import VeeValidate, { Validator } from 'vee-validate'
+import {store} from './store'
 
 moment.locale('pt-BR')
 
@@ -34,10 +35,7 @@ Vue.material.setCurrentTheme('tema');
 const router = new VueRouter({routes});
 new Vue({
     el: '#app',
-    framework7: {
-        root: '#app',
-        routes: router
-    },
+    store,
     router: router,
     render: h => h(App)
 });

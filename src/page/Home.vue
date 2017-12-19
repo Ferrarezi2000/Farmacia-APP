@@ -6,6 +6,10 @@
             {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
         </md-subheader>
 
+        <div class="logadoHome" v-if="nomeLogado.nome">
+            <span>Olá, bem-vindo {{ nomeLogado.nome }}</span>
+        </div>
+
          <md-card class="container" v-for="(p, index) in plantoes" :key = "p.id" :class="{'ultimo' : plantoes.length === index + 1}">
             <md-card-header class="cabecalho">
                 <md-avatar>
@@ -65,9 +69,13 @@
             this.dto.data = new Date()
             this.carregarPlantao()
             this.dataAtual = new Date()
+            if (this.$store.state.logado) {
+                this.nomeLogado = this.$store.state.logado
+            }
         },
         data() {
             return {
+                nomeLogado: {nome: null},
                 dto: {data: null},
                 plantoes: [],
                 src: '01',
@@ -94,6 +102,7 @@
 </script>
 
 <style scoped>
+    .logadoHome {padding: 1px; font-size: 12px; color: white; background: black}
     .nome {color: white; background: lightsalmon; min-height: 30px; padding-top: 68px; padding-bottom: 5px}
     .ultimo {margin-bottom: 70px}
     .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}

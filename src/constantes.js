@@ -1,7 +1,11 @@
 export const C = {
     URL: {
-        COMENTAR: {
-            BASE: 'http://localhost:5000/avaliacao/'
+        AVALIACAO: {
+            BASE: 'http://localhost:5000/avaliacao/',
+            RESPOSTA: 'http://localhost:5000/avaliacao/resposta/'
+        },
+        LOGAR: {
+            BASE: 'http://localhost:5000/logar/'
         },
         ADMINISTRADOR: {
             BASE: 'http://localhost:5000/administrador/',
@@ -10,6 +14,7 @@ export const C = {
         },
         FARMACIA: {
             BASE: 'http://localhost:5000/farmacia/',
+            LOGAR: 'http://localhost:5000/farmacia/logar/',
             ACESSO: 'http://localhost:5000/farmacia/setarAcesso/',
             VIP: 'http://localhost:5000/farmacia/vip'
         },
