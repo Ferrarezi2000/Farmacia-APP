@@ -6,7 +6,7 @@
             </md-button>
 
             <div>
-                <span>Farmácias</span>
+                <span style="font-weight: bold; font-size: 18px; font-style: italic">Farmácias</span>
                 <!--<img src="../assets/sumicity.png" style="height: 15px;">-->
             </div>
         </md-toolbar>
@@ -52,9 +52,16 @@
                             <span>Patrocinadores</span>
                         </router-link>
                     </md-list-item>
+
+                    <md-list-item v-if="nomeLogado.id">
+                        <router-link to="/adm">
+                            <md-icon>verified_user</md-icon>
+                            <span>Painel do Administrador</span>
+                        </router-link>
+                    </md-list-item>
                 </md-list>
 
-                <md-button class="md-raised" @click="openDialog()" style="color: grey">
+                <md-button class="md-raised" @click="openDialog()" style="color: grey" v-if="!nomeLogado.id">
                     <md-icon>star_rate</md-icon>
                     <span>Logar</span>
                 </md-button>
@@ -96,7 +103,11 @@
 
     import { C } from '../constantes'
     export default{
-        created() {},
+        created() {
+            if (this.$store.state.logado) {
+                this.nomeLogado = this.$store.state.logado
+            }
+        },
         data() {
             return {
                 dto: {usuarioAcesso: null, senhaAcesso: null},
@@ -104,7 +115,8 @@
                 titulo: 'Farmácias',
                 icone: 'add',
                 acessoNegado: '',
-                logado: {}
+                logado: {},
+                nomeLogado: {id: null}
             }
         },
         methods: {
@@ -117,7 +129,7 @@
                         this.$http.post(C.URL.LOGAR.BASE, this.dto).then(res => {
                             this.$store.commit('setarLogado', res.body)
                             this.$refs.dialog1.close()
-                            this.$router.push('/home')
+                            this.$router.push('/adm')
                         }, res => {
                             this.acessoNegado = res.body.mensagem
                         })

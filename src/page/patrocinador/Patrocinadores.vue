@@ -1,21 +1,23 @@
 <style scoped>
     .container {padding-top: 65px}
-    .nome {padding: 1px; font-size: 12px; color: white; background: black}
+    .patrocinadores {padding: 6px; font-weight: bold; font-size: 13px ; color: darkgreen; text-align: center }
 </style>
 <template>
     <div>
         <menu-superior/>
 
         <div class="phone-viewport container">
-            <div class="nome" v-if="nomeLogado.nome">
-                <span>Olá, bem-vindo {{ nomeLogado.nome }}</span>
+            <div class="patrocinadores">
+                <md-icon>assignment_turned_in</md-icon>
+                <span>Patrocinadores</span>
             </div>
+            <md-divider/>
 
-            <md-list class="custom-list md-triple-line">
-                <md-list-item v-for="item in farmacias" :key="item.id">
+              <md-list class="custom-list md-triple-line">
+                <md-list-item v-for="item in patrocinador" :key="item.id">
 
                     <div class="md-list-text-container">
-                        <span>{{ item.nome }} - {{ item.localidade }}</span>
+                        <span>{{ item.nome }}</span>
 
                         <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
                                      v-bind:max-rating="5"
@@ -36,7 +38,7 @@
                     </div>
 
                     <md-button class="md-icon-button md-list-action">
-                        <router-link :to="'/farmacias/info/' + item.id">
+                        <router-link :to="'/patrocinadores/info/' + item.id">
                             <md-icon class="md-primary">keyboard_arrow_right</md-icon>
                         </router-link>
                     </md-button>
@@ -45,19 +47,17 @@
             </md-list>
         </div>
 
-        <menu-inferior/>
+        <!--<menu-inferior/>-->
     </div>
 </template>
 <script>
-    import MenuSuperior from '../component/Menu.vue'
-    import MenuInferior from '../component/MenuInferior.vue'
-    import { C } from '../constantes'
-    import Rating from 'vue-bulma-rating'
-
+    import MenuSuperior from '../../component/Menu.vue'
+    import MenuInferior from '../../component/MenuInferior.vue'
+    import { C } from '../../constantes'
     export default {
-        components: {MenuSuperior, MenuInferior, Rating},
+        components: {MenuSuperior, MenuInferior},
         created () {
-            this.listarVip()
+            this.patrocinadores()
             if (this.$store.state.logado) {
                 this.nomeLogado = this.$store.state.logado
             }
@@ -65,13 +65,13 @@
         data () {
             return {
                 nomeLogado: {nome: null},
-                farmacias: []
+                patrocinador: []
             }
         },
         methods: {
-            listarVip() {
-                this.$http.get(C.URL.FARMACIA.BASE).then(res => {
-                    this.farmacias = res.body
+            patrocinadores() {
+                this.$http.get(C.URL.PATROCINADOR.BASE).then(res => {
+                    this.patrocinador = res.body
                 })
             }
         }

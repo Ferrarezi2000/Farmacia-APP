@@ -1,9 +1,11 @@
 <template>
     <div class="home">
         <air-menu/>
-            <md-table-card style="margin-bottom: 60px !important;">
+            <md-table-card style="margin-top: 65px">
                 <md-toolbar>
-                    <h1 class="md-title" style="font-size: 15px">PLANTÕES - {{dto.data | moment("MMMM").toUpperCase()}}</h1>
+                    <h1 class="md-title" style="font-size: 14px; font-weight: bold">
+                        PLANTÕES - {{dto.data | moment("MMMM").toUpperCase()}}
+                    </h1>
                 </md-toolbar>
                 <md-table>
                     <md-table-header>
@@ -25,7 +27,7 @@
             </md-table-card>
 
 
-        <menu-inferior/>
+        <!--<menu-inferior/>-->
     </div>
 </template>
 
@@ -62,6 +64,6 @@
 
 <style scoped>
     body {background-color: lightyellow}
-    .container {margin-left: 8%; margin-right: 8%; margin-top: 3%}
+    .container {margin-left: 8%; margin-right: 8%; margin-top: 65%}
     .home {height: 100%; background: lightyellow}
 </style>

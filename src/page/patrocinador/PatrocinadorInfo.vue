@@ -1,5 +1,5 @@
 <style scoped>
-    .ultimo {margin-bottom: 50px !important;}
+    /*.ultimo {margin-bottom: 50px !important;}*/
     .container { padding-top: 64px }
     h3 {color: darkred}
     .nome {padding: 1px; font-size: 12px; color: white; background: black}
@@ -8,11 +8,7 @@
     <div>
         <menu-superior/>
         <div class="container">
-            <div class="nome" v-if="nomeLogado.nome">
-                <span>Olá, bem-vindo {{ nomeLogado.nome }}</span>
-            </div>
-
-            <md-card class="card-example ultimo"
+             <md-card class="card-example ultimo"
                      style="margin-bottom: 15px">
                 <md-card-area md-inset>
                     <md-card-media md-ratio="16:9">
@@ -249,11 +245,6 @@
                                             <span>
                                              {{ a.momento | moment("DD/MM/YYYY")}}
                                             </span>
-                                                <md-icon style="margin-left: 10px"
-                                                         v-if="a.comentario && patrocinador.patrocinadorId === nomeLogado.id"
-                                                         @click.native="openDialog(a.id)">
-                                                    mode_edit
-                                                </md-icon>
                                             </md-layout>
                                         </md-layout>
                                         <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
@@ -280,57 +271,22 @@
                 </md-card-content>
             </md-card>
         </div>
-
-
-        <!--Dialog Resposta-->
-        <md-dialog-prompt
-                :md-title="prompt.title"
-                :md-ok-text="prompt.ok"
-                :md-cancel-text="prompt.cancel"
-                :md-input-maxlength="prompt.maxlength"
-                :md-input-placeholder="prompt.placeholder"
-                v-model="prompt.value"
-                @close="onClose"
-                ref="dialog6">
-        </md-dialog-prompt>
-
-        <md-snackbar :md-position="vertical + ' ' + horizontal" ref="snackbar" :md-duration="duration">
-            <span>Resposta cadastrada com sucesso!</span>
-            <md-button class="md-accent" @click="$refs.snackbar.close()">Fechar</md-button>
-        </md-snackbar>
-
-        <menu-inferior/>
+        <!--<menu-inferior/>-->
     </div>
 </template>
 <script>
-    import MenuSuperior from '../component/Menu.vue'
-    import MenuInferior from '../component/MenuInferior.vue'
-    import { C } from '../constantes'
+    import MenuSuperior from '../../component/Menu.vue'
+    import MenuInferior from '../../component/MenuInferior.vue'
+    import { C } from '../../constantes'
     export default {
         components: {MenuSuperior, MenuInferior},
         created () {
             this.buscarPatrocinador()
             this.setarAcesso()
-            if (this.$store.state.logado) {
-                this.nomeLogado = this.$store.state.logado
-            }
         },
         data () {
             return {
-                prompt: {
-                    title: 'Olá, Digite sua resposta.',
-                    ok: 'Salvar',
-                    cancel: 'Cancelar',
-                    id: 'name',
-                    name: 'name',
-                    placeholder: 'resposta...',
-                    maxlength: 120,
-                    value: ''
-                },
-                vertical: 'bottom',
-                horizontal: 'center',
                 mensagem: null,
-                duration: 4000,
                 estrelas5: 5,
                 estrelas4: 4,
                 estrelas3: 3,
@@ -339,23 +295,10 @@
                 nomeLogado: {nome: null},
                 patrocinador: {patrocinadorAvaliacoes: 0},
                 data: null,
-                avaliacaoId: null,
-                dto: {resposta: null}
+                avaliacaoId: null
             }
         },
         methods: {
-            openDialog(id) {
-                this.avaliacaoId = id
-                this.$refs.dialog6.open();
-                this.prompt.value = ''
-            },
-            onClose() {
-                this.dto.resposta = this.prompt.value
-                this.$http.put(C.URL.AVALIACAO.RESPOSTA + this.avaliacaoId, this.dto).then(res => {
-                    this.$refs.snackbar.open()
-                    this.buscarPatrocinador()
-                })
-            },
             comentar () {
                 this.$router.push('/comentar/patrocinador/' + this.patrocinador.patrocinadorId)
             },

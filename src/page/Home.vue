@@ -6,10 +6,6 @@
             {{ this.dataAtual | moment("ddd, DD MMM  YYYY -  HH:mm") }}
         </md-subheader>
 
-        <div class="logadoHome" v-if="nomeLogado.nome">
-            <span>Olá, bem-vindo {{ nomeLogado.nome }}</span>
-        </div>
-
          <md-card class="container" v-for="(p, index) in plantoes" :key = "p.id" :class="{'ultimo' : plantoes.length === index + 1}">
             <md-card-header class="cabecalho">
                 <md-avatar>
@@ -53,7 +49,7 @@
              </md-card-header>
          </md-card>
 
-        <menu-inferior/>
+        <!--<menu-inferior/>-->
 
     </div>
 </template>
