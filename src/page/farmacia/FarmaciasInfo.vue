@@ -233,39 +233,79 @@
 
                         <md-list class="md-double-line md-dense">
                             <div v-for="(a, index) in farmacia.farmaciaAvaliacoes" :key="a.id">
-                                <md-list-item>
+                                <md-list class="custom-list md-triple-line">
+                                    <md-list-item>
+                                        <md-avatar>
+                                            <img :src="a.imagem" alt="Avatar">
+                                        </md-avatar>
 
-                                    <div class="md-list-text-container">
-                                        <md-layout>
-                                            <md-layout>
-                                            <span style="font-weight: bold">
-                                                {{ a.usuarioNome.toUpperCase() }} {{ a.usuarioSobrenome.toUpperCase() }}
-                                            </span>
-                                            </md-layout>
-                                            <md-layout>
+                                        <div class="md-list-text-container">
+                                            <span style="font-weight: bold">{{ a.usuarioNome }}</span>
                                             <span>
-                                             {{ a.momento | moment("ddd, DD MMM  YYYY")}}
-                                            </span>
-                                            </md-layout>
-                                        </md-layout>
-                                        <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
-                                                     v-bind:max-rating="5"
-                                                     :show-rating="false"
-                                                     :read-only="true"
-                                                     v-model="a.valor"
-                                                     inactive-color="#DCDCDC"
-                                                     active-color="#FFD700"
-                                                     v-bind:star-size="15">
+                                                <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
+                                                             v-bind:max-rating="5"
+                                                             :show-rating="false"
+                                                             :read-only="true"
+                                                             v-model="a.valor"
+                                                             inactive-color="#DCDCDC"
+                                                             active-color="#FFD700"
+                                                             v-bind:star-size="15">
                                         </star-rating>
-                                        <span style="margin-bottom: 5px">{{ a.comentario }}</span>
+                                            </span>
+                                            <p>{{ a.comentario }}</p>
+                                        </div>
 
-                                        <span style="font-weight: bold; text-align: right" v-if="a.resposta">
-                                        {{ farmacia.farmaciaNome }}
-                                    </span>
-                                        <span style="text-align: right; margin-bottom: 5px">{{ a.resposta }}</span>
-                                    </div>
-                                </md-list-item>
-                                <md-divider/>
+                                            <span>
+                                                {{ a.momento | moment("ddd, DD MMM  YYYY")}}
+                                            </span>
+
+                                        <md-divider/>
+                                    </md-list-item>
+                                </md-list>
+
+
+
+
+
+
+                                <!--<md-list-item>-->
+
+                                    <!--<div class="md-list-text-container">-->
+                                        <!--<md-layout>-->
+                                            <!--<md-layout>-->
+                                                <!--<md-avatar>-->
+                                                    <!--<img :src="a.imagem" alt="Avatar">-->
+                                                <!--</md-avatar>-->
+                                            <!--</md-layout>-->
+                                            <!--<md-layout>-->
+                                            <!--<span style="font-weight: bold">-->
+                                                <!--{{ a.usuarioNome.toUpperCase() }}-->
+                                            <!--</span>-->
+                                            <!--</md-layout>-->
+                                            <!--<md-layout>-->
+                                            <!--&lt;!&ndash;<span>&ndash;&gt;-->
+                                             <!--&lt;!&ndash;{{ a.momento | moment("ddd, DD MMM  YYYY")}}&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                                            <!--</md-layout>-->
+                                        <!--</md-layout>-->
+                                        <!--<star-rating v-bind:increment="0.5" style="margin-bottom: 5px"-->
+                                                     <!--v-bind:max-rating="5"-->
+                                                     <!--:show-rating="false"-->
+                                                     <!--:read-only="true"-->
+                                                     <!--v-model="a.valor"-->
+                                                     <!--inactive-color="#DCDCDC"-->
+                                                     <!--active-color="#FFD700"-->
+                                                     <!--v-bind:star-size="15">-->
+                                        <!--</star-rating>-->
+                                        <!--<span style="margin-bottom: 5px">{{ a.comentario }}</span>-->
+
+                                        <!--<span style="font-weight: bold; text-align: right" v-if="a.resposta">-->
+                                        <!--{{ farmacia.farmaciaNome }}-->
+                                    <!--</span>-->
+                                        <!--<span style="text-align: right; margin-bottom: 5px">{{ a.resposta }}</span>-->
+                                    <!--</div>-->
+                                <!--</md-list-item>-->
+                                <!--<md-divider/>-->
                             </div>
                         </md-list>
                     </div>

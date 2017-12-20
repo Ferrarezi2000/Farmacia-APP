@@ -23,21 +23,21 @@
                 </star-rating>
                 <span v-if="mensagem" class="help is-danger">{{ mensagem }}</span>
 
-                <md-input-container style="margin-top: 20px">
-                    <label :class="{'danger': errors.has('usuarioNome') }">Nome</label>
-                    <md-input name="usuarioNome"
-                              v-model="dto.usuarioNome" v-validate="'required'" required></md-input>
-                </md-input-container>
-                <span v-show="errors.has('usuarioNome')" class="help is-danger">Nome é obrigatório!</span>
+                <!--<md-input-container style="margin-top: 20px">-->
+                    <!--<label :class="{'danger': errors.has('usuarioNome') }">Nome</label>-->
+                    <!--<md-input name="usuarioNome"-->
+                              <!--v-model="dto.usuarioNome" v-validate="'required'" required></md-input>-->
+                <!--</md-input-container>-->
+                <!--<span v-show="errors.has('usuarioNome')" class="help is-danger">Nome é obrigatório!</span>-->
 
 
-                <md-input-container>
-                    <label :class="{'danger': errors.has('usuarioSobrenome') }">Sobrenome</label>
-                    <md-input name="usuarioSobrenome"
-                              v-model="dto.usuarioSobrenome" v-validate="'required'" required></md-input>
-                </md-input-container>
-                <span v-show="errors.has('usuarioSobrenome')" class="help is-danger"
-                      style="margin-bottom: 20px">Sobrenome é obrigatório!</span>
+                <!--<md-input-container>-->
+                    <!--<label :class="{'danger': errors.has('usuarioSobrenome') }">Sobrenome</label>-->
+                    <!--<md-input name="usuarioSobrenome"-->
+                              <!--v-model="dto.usuarioSobrenome" v-validate="'required'" required></md-input>-->
+                <!--</md-input-container>-->
+                <!--<span v-show="errors.has('usuarioSobrenome')" class="help is-danger"-->
+                      <!--style="margin-bottom: 20px">Sobrenome é obrigatório!</span>-->
 
                 <md-input-container>
                     <label>Comentário</label>
@@ -46,6 +46,14 @@
             </form>
         </div>
 
+
+        <div class="fb-login-button" data-max-rows="1" data-size="large"
+             data-button-type="continue_with" data-show-faces="false"
+             data-auto-logout-link="false" data-use-continue-as="false"
+             @click="checkLoginState()"></div>
+
+        <button @click="checkLoginState">teste</button>
+
         <md-button style="width: 100%; background-color: red; color: white;
                  margin: 0px !important; padding: 0px !important; margin-bottom: 10px" class="botao"
                    @click.stop.prevent="enviar()">Enviar
@@ -53,6 +61,25 @@
     </div>
 </template>
 <script>
+    // facebook
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '1996582697249987',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.11'
+        });
+    };
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+
     import MenuSuperior from '../../component/Menu.vue'
     import MenuInferior from '../../component/MenuInferior.vue'
     import { C } from '../../constantes'
@@ -67,6 +94,12 @@
                 horizontal: 'center',
                 mensagem: null,
                 duration: 4000,
+                picture: {
+                    data: {
+                        url: ''
+                    }
+                },
+                name: '',
                 dto: {
                     usuarioNome: null,
                     usuarioSobrenome: null,
@@ -78,10 +111,28 @@
             }
         },
         methods: {
+            checkLoginState() {
+                console.log('passou')
+                FB.getLoginStatus(function (response) {
+                    // statusChangeCallback(response)
+                    console.log('passou', response)
+                })
+
+                FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+                    userInformation => {
+                        console.log(userInformation)
+                        this.picture = userInformation.picture
+                        this.name = userInformation.name;
+                    }
+                )
+            },
             enviar () {
                 this.$validator.validateAll().then(res => {
                     if (res) {
                         if (this.dto.valor) {
+                            this.dto.usuarioNome = this.name
+                            this.dto.usuarioSobrenome = this.name
+                            this.dto.imagem = this.picture.data.url
                             this.dto.farmaciaId = this.$route.params.id
                             this.$http.post(C.URL.AVALIACAO.BASE, this.dto).then(res => {
                                 this.$router.push('/farmacias/info/' + this.$route.params.id)

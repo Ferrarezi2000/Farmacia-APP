@@ -1,119 +1,100 @@
 <style scoped></style>
 <template>
     <div>
+        <!--<facebook-login class="button"-->
+                        <!--appId="326022817735322"-->
+                        <!--@login="getUserData"-->
+                        <!--@logout="onLogout"-->
+                        <!--@get-initial-status="getUserData">-->
+        <!--</facebook-login>-->
 
-        <div style="width: 60%; float: left; text-align: center">
-            <div style="font-size: 30px; color: orange">
-                {{ farmacia.farmaciaMediaAvaliacao }}
-            </div>
-            <div>
-                <star-rating style="margin-bottom: 5px; margin-left: 83px"
-                             v-bind:max-rating="5"
-                             v-model="estrelas5"
-                             :show-rating="false"
-                             :read-only="true"
-                             inactive-color="#DCDCDC"
-                             active-color="#FFD700"
-                             v-bind:star-size="15">
-                </star-rating>
-            </div>
-
-            <div>{{ farmacia.farmaciaTotalAvaliacoes }}
-                <span v-if="farmacia.farmaciaTotalAvaliacoes === 1"
-                      style="margin-left: 5px">avaliação</span>
-                <span v-else style="margin-left: 5px">avaliações</span>
-            </div>
+        {{name}}
+        <div v-if="picture">
+            <img :src="picture.data.url"/>
+        {{picture.data.url}}
         </div>
 
+        <div class="fb-login-button" data-max-rows="1" data-size="large"
+             data-button-type="continue_with" data-show-faces="false"
+             data-auto-logout-link="false" data-use-continue-as="false"
+             @onlogin="checkLoginState()"></div>
 
-        <div style="width: 40%; float: right">
-                <star-rating style="margin-bottom: 5px"
-                             v-bind:max-rating="5"
-                             v-model="estrelas5"
-                             :show-rating="false"
-                             :read-only="true"
-                             inactive-color="#DCDCDC"
-                             active-color="#FFD700"
-                             v-bind:star-size="15">
-                </star-rating>
-                <!--<span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes5 }}</span>-->
+<button @click="checkLoginState">teste</button>
 
-                    <star-rating style="margin-bottom: 5px"
-                                 v-bind:max-rating="5"
-                                 v-model="estrelas4"
-                                 :show-rating="false"
-                                 :read-only="true"
-                                 inactive-color="#DCDCDC"
-                                 active-color="#FFD700"
-                                 v-bind:star-size="15">
-                    </star-rating>
-                    <!--<span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes4 }}</span>-->
-
-
-                    <star-rating style="margin-bottom: 5px"
-                                 v-bind:max-rating="5"
-                                 v-model="estrelas3"
-                                 :show-rating="false"
-                                 :read-only="true"
-                                 inactive-color="#DCDCDC"
-                                 active-color="#FFD700"
-                                 v-bind:star-size="15">
-                    </star-rating>
-                    <!--<span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes3 }}</span>-->
-
-                        <star-rating style="margin-bottom: 5px"
-                                     v-bind:max-rating="5"
-                                     v-model="estrelas2"
-                                     :show-rating="false"
-                                     :read-only="true"
-                                     inactive-color="#DCDCDC"
-                                     active-color="#FFD700"
-                                     v-bind:star-size="15">
-                        </star-rating>
-                        <!--<span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes2 }}</span>-->
-
-                        <star-rating style="margin-bottom: 5px"
-                                     v-bind:max-rating="5"
-                                     v-model="estrelas1"
-                                     :show-rating="false"
-                                     :read-only="true"
-                                     inactive-color="#DCDCDC"
-                                     active-color="#FFD700"
-                                     v-bind:star-size="15">
-                        </star-rating>
-                        <!--<span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes1 }}</span>-->
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-<div style="clear: right">
-
-        teste
-
-
-
-    </div>
     </div>
 </template>
 <script>
+
+
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '1996582697249987',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.11'
+        });
+    };
+
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    import facebookLogin from 'facebook-login-vuejs'
     export default {
-        created () {},
-        data () {
+        name: 'app',
+        data() {
             return {
-                estrelas5: 5,
-                estrelas4: 4,
-                estrelas3: 3,
-                estrelas2: 2,
-                estrelas1: 1,
-                farmacia: {farmaciaMediaAvaliacao: 3.5, farmaciaTotalAvaliacoes: 5}
+                isConnected: false,
+                name: '',
+                email: '',
+                picture: '',
+                personalID: ''
+            }
+        },
+        components: { facebookLogin },
+        methods: {
+            checkLoginState() {
+                console.log('passou')
+                FB.getLoginStatus(function (response) {
+                    // statusChangeCallback(response)
+                    console.log('passou', response)
+                })
+
+               FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+                    userInformation => {
+                   console.log(userInformation)
+                        this.personalID = userInformation.id;
+                        this.picture = userInformation.picture
+                        this.email = userInformation.email;
+                        this.name = userInformation.name;
+                    }
+                )
+            },
+            getUserData() {
+                this.FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+                    userInformation => {
+                        this.personalID = userInformation.id;
+                        this.email = userInformation.email;
+                        this.name = userInformation.name;
+                    }
+                )
+            },
+            sdkLoaded(payload) {
+                this.isConnected = payload.isConnected
+                this.FB = payload.FB
+                if (this.isConnected) this.getUserData()
+            },
+            onLogin() {
+                this.isConnected = true
+                this.getUserData()
+            },
+            onLogout() {
+                this.isConnected = false;
             }
         }
     }
