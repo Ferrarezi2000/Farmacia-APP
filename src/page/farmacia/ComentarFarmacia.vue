@@ -46,39 +46,36 @@
             </form>
         </div>
 
-
-        <div class="fb-login-button" data-max-rows="1" data-size="large"
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-width="100%"
              data-button-type="continue_with" data-show-faces="false"
              data-auto-logout-link="false" data-use-continue-as="false"
-             @click="checkLoginState()"></div>
-
-        <button @click="checkLoginState">teste</button>
+             :onLogin="teste()">
+        </div>
+{{name}}
 
         <md-button style="width: 100%; background-color: red; color: white;
-                 margin: 0px !important; padding: 0px !important; margin-bottom: 10px" class="botao"
-                   @click.stop.prevent="enviar()">Enviar
+                 margin: 0px !important; padding: 0px !important; margin-bottom: 10px"
+                   @click.stop.prevent="checkLoginState()">Enviar
         </md-button>
     </div>
 </template>
 <script>
-    // facebook
+
     window.fbAsyncInit = function() {
         FB.init({
             appId            : '1996582697249987',
             autoLogAppEvents : true,
             xfbml            : true,
             version          : 'v2.11'
-        });
+        })
     };
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-
+    // (function(d, s, id){
+    //     var js, fjs = d.getElementsByTagName(s)[0];
+    //     if (d.getElementById(id)) {return;}
+    //     js = d.createElement(s); js.id = id;
+    //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+    //     fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'facebook-jssdk'));
 
     import MenuSuperior from '../../component/Menu.vue'
     import MenuInferior from '../../component/MenuInferior.vue'
@@ -86,7 +83,8 @@
 
     export default {
         components: {MenuSuperior},
-        created () {},
+        created () {
+        },
         data () {
             return {
                 valor: false,
@@ -111,8 +109,20 @@
             }
         },
         methods: {
+            teste2() {
+                console.log('teste2')
+            },
+            teste() {
+                // FB.api('/me', 'GET', { fields: 'id,name,email,picture' },
+                //     userInformation => {
+                //         console.log(userInformation)
+                //         this.picture = userInformation.picture
+                //         this.name = userInformation.name;
+                //     }
+                // )
+            },
             checkLoginState() {
-                console.log('passou')
+                console.log('passou2')
                 FB.getLoginStatus(function (response) {
                     // statusChangeCallback(response)
                     console.log('passou', response)
@@ -123,6 +133,7 @@
                         console.log(userInformation)
                         this.picture = userInformation.picture
                         this.name = userInformation.name;
+                        this.enviar()
                     }
                 )
             },

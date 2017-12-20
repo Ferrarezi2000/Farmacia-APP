@@ -14,10 +14,18 @@
         {{picture.data.url}}
         </div>
 
-        <div class="fb-login-button" data-max-rows="1" data-size="large"
-             data-button-type="continue_with" data-show-faces="false"
-             data-auto-logout-link="false" data-use-continue-as="false"
-             @onlogin="checkLoginState()"></div>
+        <!--<div class="fb-login-button" data-max-rows="1" data-size="large"-->
+             <!--data-button-type="continue_with" data-show-faces="false"-->
+             <!--data-auto-logout-link="false" data-use-continue-as="false"-->
+             <!--@onlogin="checkLoginState()"></div>-->
+
+        <!--<div class="fb-login-button" data-width="100%" data-max-rows="1" data-size="large"-->
+             <!--data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false"-->
+             <!--data-use-continue-as="true" onlogin="checkLoginState()"></div><br/>-->
+
+        <!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">-->
+        <!--</fb:login-button>-->
+
 
 <button @click="checkLoginState">teste</button>
 
@@ -44,7 +52,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    import facebookLogin from 'facebook-login-vuejs'
+    // import facebookLogin from 'facebook-login-vuejs'
     export default {
         name: 'app',
         data() {
@@ -56,8 +64,11 @@
                 personalID: ''
             }
         },
-        components: { facebookLogin },
+        // components: { facebookLogin },
         methods: {
+            teste() {
+                console.log('logou')
+            },
             checkLoginState() {
                 console.log('passou')
                 FB.getLoginStatus(function (response) {
