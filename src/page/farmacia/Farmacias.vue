@@ -13,11 +13,10 @@
             <md-divider/>
 
             <md-list class="custom-list md-triple-line">
-                <md-list-item v-for="item in farmacias" :key="item.id">
+                <md-list-item v-for="item in farmacias" :key="item.id" @click="info(item.id)">
 
                     <div class="md-list-text-container">
                         <span>{{ item.nome }} - {{ item.localidade }}</span>
-
                         <md-layout>
                             <md-layout>
                                 <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
@@ -44,17 +43,11 @@
                             <span v-else>acessos</span>
                         </span>
                     </div>
-
-                    <md-button class="md-icon-button md-list-action">
-                        <router-link :to="'/farmacias/info/' + item.id">
-                            <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                        </router-link>
-                    </md-button>
+                    <md-icon>keyboard_arrow_right</md-icon>
                     <md-divider/>
                 </md-list-item>
             </md-list>
         </div>
-
         <!--<menu-inferior/>-->
     </div>
 </template>
@@ -79,6 +72,9 @@
             }
         },
         methods: {
+            info(id) {
+                this.$router.push('/farmacias/info/' + id)
+            },
             listarVip() {
                 this.$http.get(C.URL.FARMACIA.BASE).then(res => {
                     this.farmacias = res.body

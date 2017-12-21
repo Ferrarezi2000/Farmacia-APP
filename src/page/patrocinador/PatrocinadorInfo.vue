@@ -61,9 +61,7 @@
                                     <md-button class="md-primary" @click="closeDialog('contato')">Ok</md-button>
                                 </md-dialog-actions>
                             </md-dialog>
-                            <md-button class="md-icon-button">
-                                <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                            </md-button>
+                                <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                         <md-divider/>
 
@@ -82,9 +80,7 @@
                                     <md-button class="md-primary" @click="closeDialog('endereco')">Ok</md-button>
                                 </md-dialog-actions>
                             </md-dialog>
-                            <md-button class="md-icon-button">
-                                <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                            </md-button>
+                                <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                         <md-divider/>
 
@@ -117,9 +113,7 @@
                                     <md-button class="md-primary" @click="closeDialog('funcionamento')">Ok</md-button>
                                 </md-dialog-actions>
                             </md-dialog>
-                            <md-button class="md-icon-button">
-                                <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                            </md-button>
+                                <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                         <md-divider/>
 
@@ -140,9 +134,7 @@
                                     <md-button class="md-primary" @click="closeDialog('pagamento')">Ok</md-button>
                                 </md-dialog-actions>
                             </md-dialog>
-                            <md-button class="md-icon-button">
-                                <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                            </md-button>
+                                <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                         <md-divider/>
                     </md-list>
@@ -154,9 +146,7 @@
                             <md-icon>chat_bubble_outline</md-icon>
                             <span>Deixar minha avaliação</span>
 
-                            <md-button class="md-icon-button" @click="comentar()">
-                                <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                            </md-button>
+                                <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                     </md-list>
                     <md-divider style="margin-bottom: 10px"/>

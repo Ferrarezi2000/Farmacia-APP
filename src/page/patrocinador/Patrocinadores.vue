@@ -12,12 +12,11 @@
             </div>
             <md-divider/>
 
-              <md-list class="custom-list md-triple-line">
-                <md-list-item v-for="item in patrocinador" :key="item.id">
+            <md-list class="custom-list md-triple-line">
+                <md-list-item v-for="item in patrocinador" :key="item.id" @click="info(item.id)">
 
                     <div class="md-list-text-container">
                         <span>{{ item.nome }}</span>
-
                         <md-layout>
                             <md-layout>
                                 <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
@@ -44,12 +43,7 @@
                             <span v-else>acessos</span>
                         </span>
                     </div>
-
-                    <md-button class="md-icon-button md-list-action">
-                        <router-link :to="'/patrocinadores/info/' + item.id">
-                            <md-icon class="md-primary">keyboard_arrow_right</md-icon>
-                        </router-link>
-                    </md-button>
+                    <md-icon>keyboard_arrow_right</md-icon>
                     <md-divider/>
                 </md-list-item>
             </md-list>
@@ -77,6 +71,9 @@
             }
         },
         methods: {
+            info(id) {
+                this.$router.push('/patrocinadores/info/' + id)
+            },
             patrocinadores() {
                 this.$http.get(C.URL.PATROCINADOR.BASE).then(res => {
                     this.patrocinador = res.body
