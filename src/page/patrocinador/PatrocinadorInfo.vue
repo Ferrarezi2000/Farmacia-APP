@@ -16,7 +16,7 @@
             </md-button>
 
             <div>
-                <span style="font-weight: bold; font-size: 18px; font-style: italic">{{ patrocinador.patrocinadorNome }}</span>
+                <span style="font-weight: bold; font-size: 18px; font-style: italic">{{ patrocinador.nome }}</span>
                 <!--<img src="../assets/sumicity.png" style="height: 15px;">-->
             </div>
         </md-toolbar>
@@ -31,10 +31,10 @@
                     </md-card-media>
 
                     <h2 class="md-title" style="margin-left: 18px; font-weight: bold; font-size: 20px">
-                        {{ patrocinador.patrocinadorNome }}
+                        {{ patrocinador.nome }}
                     </h2>
                     <md-card-content>
-                        {{ patrocinador.patrocinadorTexto }}
+                        {{ patrocinador.texto }}
                     </md-card-content>
                 </md-card-area>
 
@@ -72,8 +72,8 @@
                                 <md-dialog-title>Endereço</md-dialog-title>
                                 <md-dialog-content>
                                     <md-layout style="font-size: 14px">
-                                        {{ patrocinador.enderecoLogradouro }}, Nº {{ patrocinador.enderecoNumero }}
-                                        - {{ patrocinador.enderecoBairro }}
+                                        {{ patrocinador.endereco.logradouro }}, Nº {{ patrocinador.endereco.numero }}
+                                        - {{ patrocinador.endereco.bairro }}
                                     </md-layout>
                                 </md-dialog-content>
                                 <md-dialog-actions>
@@ -90,7 +90,7 @@
                             <md-dialog md-open-from="#custom" md-close-to="#custom" ref="funcionamento">
                                 <md-dialog-title>Funcionamento</md-dialog-title>
                                 <md-dialog-content>
-                                    <div class="md-inset" v-for="funcionamento in patrocinador.farmaciaFuncionamentos">
+                                    <div class="md-inset" v-for="funcionamento in patrocinador.funcionamentos">
                                         <md-layout>
                                             <md-layout style="font-size: 14px">
                                                 <md-layout md-flex="40">
@@ -124,7 +124,7 @@
                             <md-dialog md-open-from="#custom" md-close-to="#custom" ref="pagamento">
                                 <md-dialog-title>Forma de Pagamento</md-dialog-title>
                                 <md-dialog-content>
-                                    <div class="md-inset" v-for="pagamento in patrocinador.farmaciaPagamentos">
+                                    <div class="md-inset" v-for="pagamento in patrocinador.pagamentos">
                                         <md-layout style="font-size: 14px">
                                             {{ pagamento.tipo }}
                                         </md-layout>
@@ -153,7 +153,7 @@
 
                     <div style="width: 60%; float: left; text-align: center">
                         <div style="font-size: 35px; color: orange; margin-top: 20px; margin-bottom: 5px">
-                            {{ patrocinador.patrocinadorMediaAvaliacao }}
+                            {{ patrocinador.media }}
                         </div>
                         <md-layout md-align="center" md-gutter="16">
                             <md-layout md-flex="35">
@@ -170,8 +170,8 @@
                             </md-layout>
                         </md-layout>
 
-                        <div style="font-weight: bold">{{ patrocinador.patrocinadorTotalAvaliacoes }}
-                            <span v-if="patrocinador.patrocinadorTotalAvaliacoes === 1"
+                        <div style="font-weight: bold">{{ patrocinador.totalAvaliacoes }}
+                            <span v-if="patrocinador.totalAvaliacoes === 1"
                                   style="margin-left: 5px">avaliação</span>
                             <span v-else style="margin-left: 5px">avaliações</span>
                         </div>
@@ -190,7 +190,7 @@
                                              active-color="#FFFF00"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ patrocinador.patrocinadorTotalAvaliacoes5 }}</span>
+                                <span class="nEstrelas">{{ patrocinador.totalAvaliacoes5 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -206,7 +206,7 @@
                                              active-color="#FFD700"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ patrocinador.patrocinadorTotalAvaliacoes4 }}</span>
+                                <span class="nEstrelas">{{ patrocinador.totalAvaliacoes4 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -222,7 +222,7 @@
                                              active-color="#FFA500"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ patrocinador.patrocinadorTotalAvaliacoes3 }}</span>
+                                <span class="nEstrelas">{{ patrocinador.totalAvaliacoes3 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -238,7 +238,7 @@
                                              active-color="OrangeRed"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ patrocinador.patrocinadorTotalAvaliacoes2 }}</span>
+                                <span class="nEstrelas">{{ patrocinador.totalAvaliacoes2 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -254,7 +254,7 @@
                                              active-color="#FF0000"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ patrocinador.patrocinadorTotalAvaliacoes1 }}</span>
+                                <span class="nEstrelas">{{ patrocinador.totalAvaliacoes1 }}</span>
                             </md-layout>
                         </md-layout>
                     </div>
@@ -263,7 +263,7 @@
                         <md-divider style="margin-top: 10px; margin-bottom: 10px "/>
 
                         <md-list class="md-double-line md-dense">
-                            <div v-for="comentario in patrocinador.patrocinadorAvaliacoes" :key="comentario.id">
+                            <div v-for="comentario in patrocinador.avaliacoes" :key="comentario.id">
                                 <md-list class="custom-list md-triple-line">
                                     <md-list-item>
                                         <md-avatar>
@@ -291,7 +291,7 @@
                                     <md-list-item>
                                         <div class="md-list-text-container">
                                         <span style="font-weight: bold; text-align: right" v-if="comentario.resposta">
-                                            {{ patrocinador.patrocinadorNome }}
+                                            {{ patrocinador.nome }}
                                         </span>
                                             <span style="text-align: right; margin-bottom: 5px">
                                                 {{ comentario.resposta }}
@@ -328,7 +328,9 @@
                 estrelas2: 2,
                 estrelas1: 1,
                 nomeLogado: {nome: null},
-                patrocinador: {patrocinadorAvaliacoes: 0},
+                patrocinador: {patrocinadorAvaliacoes: 0, endereco: {
+                    logradouro: null, numero: null, bairro: null
+                    }},
                 data: null,
                 avaliacaoId: null
             }
@@ -345,14 +347,14 @@
                 this.$router.push('/patrocinadores')
             },
             comentar () {
-                this.$store.commit('setarPatrocinadorNome', this.patrocinador.patrocinadorNome)
-                this.$router.push('/comentar/patrocinador/' + this.patrocinador.patrocinadorId)
+                this.$store.commit('setarPatrocinadorNome', this.patrocinador.nome)
+                this.$router.push('/comentar/patrocinador/' + this.patrocinador.id)
             },
             setarAcesso () {
                 this.$http.get(C.URL.PATROCINADOR.ACESSO + this.$route.params.id)
             },
             buscarPatrocinador() {
-                this.$http.get(C.URL.PATROCINADOR.BASE + this.$route.params.id).then(res => {
+                this.$http.get(C.URL.PATROCINADOR.BUSCAR_APP + this.$route.params.id).then(res => {
                     this.patrocinador = res.body
                 })
             }

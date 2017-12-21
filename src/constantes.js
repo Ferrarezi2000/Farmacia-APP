@@ -14,6 +14,7 @@ export const C = {
         },
         FARMACIA: {
             BASE: 'http://10.98.5.51:5000/farmacia/',
+            BUSCAR_APP: 'http://10.98.5.51:5000/farmacia/buscarApp/',
             LOGAR: 'http://10.98.5.51:5000/farmacia/logar/',
             ACESSO: 'http://10.98.5.51:5000/farmacia/setarAcesso/',
             VIP: 'http://10.98.5.51:5000/farmacia/vip'
@@ -27,6 +28,7 @@ export const C = {
         PATROCINADOR: {
             BASE: 'http://10.98.5.51:5000/patrocinador/',
             ACESSO: 'http://10.98.5.51:5000/patrocinador/setarAcesso/',
+            BUSCAR_APP: 'http://10.98.5.51:5000/patrocinador/buscarApp/',
             VIP: 'http://10.98.5.51:5000/farmacia/vip'
         },
         PROPAGANDA: {

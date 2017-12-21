@@ -16,7 +16,7 @@
             </md-button>
 
             <div>
-                <span style="font-weight: bold; font-size: 18px; font-style: italic">{{ farmacia.farmaciaNome }}</span>
+                <span style="font-weight: bold; font-size: 18px; font-style: italic">{{ farmacia.nome }}</span>
                 <!--<img src="../assets/sumicity.png" style="height: 15px;">-->
             </div>
         </md-toolbar>
@@ -30,10 +30,10 @@
                              alt="Coffee House">
                     </md-card-media>
                     <h2 class="md-title" style="margin-left: 18px; font-weight: bold; font-size: 20px">
-                        {{ farmacia.farmaciaNome }}
+                        {{ farmacia.nome }}
                     </h2>
                     <md-card-content>
-                        {{ farmacia.farmaciaTexto }}
+                        {{ farmacia.texto }}
                     </md-card-content>
                 </md-card-area>
 
@@ -71,8 +71,8 @@
                                 <md-dialog-title>Endereço</md-dialog-title>
                                 <md-dialog-content>
                                         <md-layout style="font-size: 14px">
-                                            {{ farmacia.enderecoLogradouro }}, Nº {{ farmacia.enderecoNumero }}
-                                             - {{ farmacia.enderecoBairro }}
+                                            {{ farmacia.endereco.logradouro }}, Nº {{ farmacia.endereco.numero }}
+                                             - {{ farmacia.endereco.bairro }}
                                         </md-layout>
                                 </md-dialog-content>
                                 <md-dialog-actions>
@@ -90,7 +90,7 @@
                             <md-dialog md-open-from="#custom" md-close-to="#custom" ref="funcionamento">
                                 <md-dialog-title>Funcionamento</md-dialog-title>
                                 <md-dialog-content>
-                                    <div class="md-inset" v-for="funcionamento in farmacia.farmaciaFuncionamentos">
+                                    <div class="md-inset" v-for="funcionamento in farmacia.funcionamentos">
                                         <md-layout>
                                             <md-layout style="font-size: 14px">
                                                 <md-layout md-flex="40">
@@ -123,7 +123,7 @@
                             <md-dialog md-open-from="#custom" md-close-to="#custom" ref="pagamento">
                                 <md-dialog-title>Forma de Pagamento</md-dialog-title>
                                 <md-dialog-content>
-                                    <div class="md-inset" v-for="pagamento in farmacia.farmaciaPagamentos">
+                                    <div class="md-inset" v-for="pagamento in farmacia.pagamentos">
                                         <md-layout style="font-size: 14px">
                                             {{ pagamento.tipo }}
                                         </md-layout>
@@ -152,7 +152,7 @@
 
                     <div style="width: 60%; float: left; text-align: center">
                         <div style="font-size: 35px; color: orange; margin-top: 20px; margin-bottom: 5px">
-                            {{ farmacia.farmaciaMediaAvaliacao }}
+                            {{ farmacia.media }}
                         </div>
                         <md-layout md-align="center" md-gutter="16">
                             <md-layout md-flex="35">
@@ -169,8 +169,8 @@
                             </md-layout>
                         </md-layout>
 
-                        <div style="font-weight: bold">{{ farmacia.farmaciaTotalAvaliacoes }}
-                            <span v-if="farmacia.farmaciaTotalAvaliacoes === 1"
+                        <div style="font-weight: bold">{{ farmacia.totalAvaliacoes }}
+                            <span v-if="farmacia.totalAvaliacoes === 1"
                                   style="margin-left: 5px">avaliação</span>
                             <span v-else style="margin-left: 5px">avaliações</span>
                         </div>
@@ -189,7 +189,7 @@
                                              active-color="#FFFF00"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes5 }}</span>
+                                <span class="nEstrelas">{{ farmacia.totalAvaliacoes5 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -205,7 +205,7 @@
                                              active-color="#FFD700"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes4 }}</span>
+                                <span class="nEstrelas">{{ farmacia.totalAvaliacoes4 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -221,7 +221,7 @@
                                              active-color="#FFA500"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes3 }}</span>
+                                <span class="nEstrelas">{{ farmacia.totalAvaliacoes3 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -237,7 +237,7 @@
                                              active-color="OrangeRed"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes2 }}</span>
+                                <span class="nEstrelas">{{ farmacia.totalAvaliacoes2 }}</span>
                             </md-layout>
                         </md-layout>
 
@@ -253,7 +253,7 @@
                                              active-color="#FF0000"
                                              v-bind:star-size="15">
                                 </star-rating>
-                                <span class="nEstrelas">{{ farmacia.farmaciaTotalAvaliacoes1 }}</span>
+                                <span class="nEstrelas">{{ farmacia.totalAvaliacoes1 }}</span>
                             </md-layout>
                         </md-layout>
                     </div>
@@ -262,7 +262,7 @@
                         <md-divider style="margin-top: 10px; margin-bottom: 10px "/>
 
                         <md-list class="md-double-line md-dense">
-                            <div v-for="comentario in farmacia.farmaciaAvaliacoes" :key="comentario.id">
+                            <div v-for="comentario in farmacia.avaliacoes" :key="comentario.id">
                                 <md-list class="custom-list md-triple-line">
                                     <md-list-item>
                                         <md-avatar>
@@ -289,7 +289,7 @@
                                     <md-list-item>
                                         <div class="md-list-text-container">
                                         <span style="font-weight: bold; text-align: right" v-if="comentario.resposta">
-                                            {{ farmacia.farmaciaNome }}
+                                            {{ farmacia.nome }}
                                         </span>
                                             <span style="text-align: right; margin-bottom: 5px">
                                                 {{ comentario.resposta }}
@@ -332,7 +332,9 @@
                 estrelas3: 3,
                 estrelas2: 2,
                 estrelas1: 1,
-                farmacia: {farmaciaAvaliacoes: 0},
+                farmacia: {farmaciaAvaliacoes: 0, endereco: {
+                        logradouro: null, numero: null, bairro: null
+                    }},
                 avaliacaoId: null,
 
             }
@@ -349,14 +351,14 @@
                 this.$router.push('/farmacias')
             },
             comentar () {
-                this.$store.commit('setarFarmaciaNome', this.farmacia.farmaciaNome)
-                this.$router.push('/comentar/farmacia/' + this.farmacia.farmaciaId)
+                this.$store.commit('setarFarmaciaNome', this.farmacia.nome)
+                this.$router.push('/comentar/farmacia/' + this.farmacia.id)
             },
             setarAcesso () {
                 this.$http.get(C.URL.FARMACIA.ACESSO + this.$route.params.id)
             },
             buscarFarmacia() {
-                this.$http.get(C.URL.FARMACIA.BASE + this.$route.params.id).then(res => {
+                this.$http.get(C.URL.FARMACIA.BUSCAR_APP + this.$route.params.id).then(res => {
                     this.farmacia = res.body
                 })
             }
