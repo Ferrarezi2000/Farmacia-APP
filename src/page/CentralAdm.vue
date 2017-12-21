@@ -1,11 +1,16 @@
 <style scoped>
     .container { padding-top: 64px }
+    .central {padding: 6px; font-weight: bold; font-size: 12px ; background-color: #e3e8e7}
 </style>
 <template>
     <div>
         <menu-superior/>
+        <div class="container"></div>
+        <div class="central">
+            <span>Olá {{nomeLogado.nome}}, bem-vindo à Central do Administrador</span>
+        </div>
 
-        <md-card class="container">
+        <md-card>
             <md-card-header>
                 <md-card-header-text>
                     <div class="md-title">{{ nomeLogado.nome }}</div>
@@ -62,18 +67,14 @@
                                                 <md-layout>
                                                     <md-layout>
                                                         <span style="font-weight: bold">
-                                                            {{ item.usuarioNome.toUpperCase() }}
-                                                            {{ item.usuarioSobrenome.toUpperCase() }}
+                                                            {{ item.usuarioNome }}
+                                                            {{ item.usuarioSobrenome }}
                                                         </span>
                                                     </md-layout>
                                                     <md-layout>
                                                         <span>
-                                                         {{ item.momento | moment("DD/MM/YYYY")}}
+                                                         {{ item.momento | moment("ddd, DD MMM  YYYY")}}
                                                         </span>
-                                                        <md-icon style="margin-left: 10px"
-                                                                 @click.native="openDialog(item.id, index)">
-                                                            mode_edit
-                                                        </md-icon>
                                                      </md-layout>
                                                 </md-layout>
                                                 <star-rating v-bind:increment="0.5" style="margin-bottom: 5px"
@@ -88,6 +89,11 @@
                                                 <span style="margin-bottom: 5px">{{ item.comentario }}</span>
                                             </div>
                                         </md-list-item>
+                                        <div style="width: 100%; text-align: center">
+                                        <md-button class="md-raised" @click="openDialog(item.id, index)">
+                                           <span>Responder</span>
+                                        </md-button>
+                                        </div>
                                         <md-divider/>
                                     </div>
                                 </md-list>

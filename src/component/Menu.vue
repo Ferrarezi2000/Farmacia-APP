@@ -1,3 +1,10 @@
+<style scoped>
+    .danger {color: red}
+    .menu {z-index: 2 !important; position: fixed !important; top: 0px !important; width: 100% !important;}
+    .corMenu {background-color: red !important;}
+    .stand {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: left;
+            font-size: 13px; color: white; background-color: red}
+</style>
 <template>
     <div>
         <md-toolbar class="corMenu menu">
@@ -59,16 +66,21 @@
                             <span>Painel do Administrador</span>
                         </router-link>
                     </md-list-item>
-                </md-list>
 
-                <md-button class="md-raised" @click="openDialog()" style="color: grey" v-if="!nomeLogado.id">
-                    <md-icon>star_rate</md-icon>
-                    <span>Logar</span>
-                </md-button>
+                </md-list>
             </div>
 
+
             <div class="stand">
-                <span>Stand By - Soluções em Informática</span>
+                <span>
+                    Stand By - Soluções em Informática
+                </span>
+                <span style="margin-left: 10px" v-if="!nomeLogado.id">
+                    <md-icon style="color: yellow; font-size: 20px"
+                             @click.native="openDialog()">
+                        star_rate
+                    </md-icon>
+                </span>
             </div>
         </md-sidenav>
 
@@ -83,9 +95,9 @@
                     <md-input name="sobrenome" v-model="dto.usuarioAcesso" v-validate="'required'" required/>
                 </md-input-container>
 
-                <md-input-container>
+                <md-input-container md-has-password>
                     <label :class="{'danger': errors.has('senha') }">Senha</label>
-                    <md-input name="senha" v-validate="'required'" required v-model="dto.senhaAcesso" />
+                    <md-input name="senha" v-validate="'required'" required v-model="dto.senhaAcesso" type="password" />
                 </md-input-container>
             </md-dialog-content>
 
@@ -148,10 +160,3 @@
         }
     }
 </script>
-<style scoped>
-    .danger {color: red}
-    .menu {z-index: 2 !important; position: fixed !important; top: 0px !important; width: 100% !important;}
-    .corMenu {background-color: red !important;}
-    .stand {position: absolute; width: 100%; bottom: 0; padding: .5em; text-align: left;
-        border-top: 1px solid #ECEFF1; color: white; background-color: red}
-</style>
