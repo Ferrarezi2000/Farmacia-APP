@@ -10,8 +10,11 @@ import moment from 'moment';
 import StarRating from 'vue-star-rating'
 import VueLocalStorage from 'vue-localstorage'
 import VeeValidate, { Validator } from 'vee-validate'
+import ptBR from 'vee-validate/dist/locale/pt_BR'
 import {store} from './store'
+import money from 'v-money'
 
+Validator.localize('pt_BR', ptBR)
 moment.locale('pt-BR')
 
 Vue.use(VeeValidate, { locale: 'pt_BR', delay: '5' })
@@ -22,6 +25,7 @@ Vue.use(VueMaterial);
 Vue.use(VueResource);
 Vue.use(VueMask);
 Vue.use(VueMoment, {moment})
+Vue.use(money, {decimal: ',', thousands: '.', precision: 2, masked: false, prefix: 'R$ '})
 
 Vue.material.registerTheme({
     tema: {

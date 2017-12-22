@@ -137,6 +137,13 @@
                                 <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
                         <md-divider/>
+
+                        <md-list-item @click="adicionais()" v-if="patrocinador.adicionais">
+                            <md-icon>payment</md-icon>
+                            <span>{{ patrocinador.tituloAdicionais }}</span>
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </md-list-item>
+                        <md-divider/>
                     </md-list>
 
                     <h3>Avaliações</h3>
@@ -336,6 +343,12 @@
             }
         },
         methods: {
+            adicionais() {
+                this.$router.push('/adicionais/patrocinador/' + this.patrocinador.id)
+                this.$store.commit('setarFarmaciaNome', this.patrocinador.nome)
+                this.$store.commit('setarTituloAdicionais', this.patrocinador.tituloAdicionais)
+                this.$store.commit('setarTextoAdicionais', this.patrocinador.textoAdicionais)
+            },
             openDialog(ref) {
                 this.$refs[ref].open()
                 this.$emit('chamou')

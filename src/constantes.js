@@ -17,7 +17,11 @@ export const C = {
             BUSCAR_APP: 'http://10.98.5.51:5000/farmacia/buscarApp/',
             LOGAR: 'http://10.98.5.51:5000/farmacia/logar/',
             ACESSO: 'http://10.98.5.51:5000/farmacia/setarAcesso/',
-            VIP: 'http://10.98.5.51:5000/farmacia/vip'
+            VIP: 'http://10.98.5.51:5000/farmacia/vip',
+            EDITAR_PERFIL: 'http://10.98.5.51:5000/farmacia/editar/perfilApp/',
+            EDITAR_ENDERECO: 'http://10.98.5.51:5000/farmacia/editar/enderecoApp/',
+            EDITAR_ADICIONAIS: 'http://10.98.5.51:5000/farmacia/editar/adicionalApp/',
+            EDITAR_CONTATO: 'http://10.98.5.51:5000/farmacia/editar/contatosApp/'
         },
         PLANTAO: {
             BASE: 'http://10.98.5.51:5000/plantao/',
@@ -35,6 +39,10 @@ export const C = {
             BASE: 'http://10.98.5.51:5000/propaganda/',
             DELETE: 'http://10.98.5.51:5000/propaganda/deletar/',
             PORDIA: 'http://10.98.5.51:5000/propaganda/dias/'
+        },
+        ADICIONAIS: {
+            POR_FARMACIA: 'http://10.98.5.51:5000/adicional/farmacia/',
+            POR_PATROCINADOR: 'http://10.98.5.51:5000/adicional/patrocinador/'
         },
         ENDERECO: {
             BASE: 'http://10.98.5.51:5000/endereco'

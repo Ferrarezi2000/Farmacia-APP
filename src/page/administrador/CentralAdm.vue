@@ -27,13 +27,36 @@
                         </star-rating>
                     </div>
                 </md-card-header-text>
-
+                <!--Menu-->
                 <md-menu md-size="4" md-direction="bottom left">
                     <md-button class="md-icon-button" md-menu-trigger>
                         <md-icon>more_vert</md-icon>
                     </md-button>
-
                     <md-menu-content>
+                        <md-menu-item @click="editarPerfil()">
+                            <span>Editar Perfil</span>
+                            <md-icon>assignment_ind</md-icon>
+                        </md-menu-item>
+                        <md-divider/>
+
+                        <md-menu-item @click="editarContatos()">
+                            <span>Editar Contatos</span>
+                            <md-icon>phone</md-icon>
+                        </md-menu-item>
+                        <md-divider/>
+
+                        <md-menu-item @click="editarEndereco()">
+                            <span>Editar Endereço</span>
+                            <md-icon>place</md-icon>
+                        </md-menu-item>
+                        <md-divider/>
+
+                        <md-menu-item @click="editarAdicional()" v-if="nomeLogado.adicionais">
+                            <span>Editar {{ nomeLogado.tituloAdicionais }}</span>
+                            <md-icon>map</md-icon>
+                        </md-menu-item>
+                        <md-divider/>
+
                         <md-menu-item @click="sair()">
                             <span>Sair</span>
                             <md-icon>exit_to_app</md-icon>
@@ -44,13 +67,15 @@
 
             <md-card-content>
                 <div v-if="nomeLogado.avaliacoes.length !== 0">
-                    <div class="md-subhead">Você tem {{ nomeLogado.avaliacoes.length }} avaliações sem respostas!</div>
+                    <div class="md-subhead" v-if="nomeLogado.avaliacoes.length === 1">
+                        Você tem {{ nomeLogado.avaliacoes.length }} avaliação sem resposta!
+                    </div>
+                    <div class="md-subhead" v-else>Você tem {{ nomeLogado.avaliacoes.length }} avaliações sem respostas!</div>
                     <div class="md-subhead">Para melhorar sua avaliação não esqueça de responder...</div>
                 </div>
                 <div v-else>
                     <div class="md-subhead">Parabéns... Você não possui nenhuma avaliação sem resposta..</div>
                 </div>
-
 
                 <md-list v-if="nomeLogado.avaliacoes.length !== 0">
                     <md-list-item>
@@ -62,7 +87,6 @@
                                 <md-list class="md-double-line md-dense">
                                     <div v-for="(item, index) in nomeLogado.avaliacoes" :key="item.id">
                                         <md-list-item>
-
                                             <div class="md-list-text-container">
                                                 <md-layout>
                                                     <md-layout>
@@ -125,8 +149,8 @@
     </div>
 </template>
 <script>
-    import MenuSuperior from '../component/Menu.vue'
-    import { C } from '../constantes'
+    import MenuSuperior from '../../component/Menu.vue'
+    import { C } from '../../constantes'
 
     export default {
         components: {MenuSuperior},
@@ -157,6 +181,18 @@
             }
         },
         methods: {
+            editarAdicional () {
+                this.$router.push('/adiministrador/adicionais/')
+            },
+            editarEndereco () {
+                this.$router.push('/adiministrador/endereco/')
+            },
+            editarPerfil () {
+                this.$router.push('/adiministrador/perfil/')
+            },
+            editarContatos () {
+                this.$router.push('/adiministrador/contatos/')
+            },
             sair () {
                 this.nomeLogado = {}
                 this.$router.push('/home')

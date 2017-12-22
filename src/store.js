@@ -6,7 +6,9 @@ export const store = new Vuex.Store({
     state: {
         logado: {},
         patrocinadorNome: '',
-        farmaciaNome: ''
+        farmaciaNome: '',
+        tituloAdicionais: '',
+        textoAdicionais: ''
     },
     mutations: {
         setarLogado (state, logado) {
@@ -17,6 +19,18 @@ export const store = new Vuex.Store({
         },
         setarFarmaciaNome (state, farmaciaNome) {
             state.farmaciaNome = farmaciaNome
+        },
+        setarTituloAdicionais (state, tituloAdicionais) {
+            state.tituloAdicionais = tituloAdicionais
+        },
+        setarTextoAdicionais (state, textoAdicionais) {
+            state.textoAdicionais = textoAdicionais
+        },
+        apagarTextoAdicionais (state) {
+            state.textoAdicionais = ''
+        },
+        apagarTituloAdicionais (state) {
+            state.textoAdicionais = ''
         },
         apagarLogado (state) {
             state.logado = {}

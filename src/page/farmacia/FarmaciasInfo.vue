@@ -135,6 +135,12 @@
                             </md-dialog>
                                 <md-icon>keyboard_arrow_right</md-icon>
                         </md-list-item>
+
+                        <md-list-item @click="adicionais()" v-if="farmacia.adicionais">
+                            <md-icon>payment</md-icon>
+                            <span>{{ farmacia.tituloAdicionais }}</span>
+                            <md-icon>keyboard_arrow_right</md-icon>
+                        </md-list-item>
                         <md-divider/>
                     </md-list>
 
@@ -340,9 +346,14 @@
             }
         },
         methods: {
+            adicionais() {
+                this.$router.push('/adicionais/farmacia/' + this.farmacia.id)
+                this.$store.commit('setarFarmaciaNome', this.farmacia.nome)
+                this.$store.commit('setarTituloAdicionais', this.farmacia.tituloAdicionais)
+                this.$store.commit('setarTextoAdicionais', this.farmacia.textoAdicionais)
+            },
             openDialog(ref) {
                 this.$refs[ref].open()
-                this.$emit('chamou')
             },
             closeDialog(ref) {
                 this.$refs[ref].close()
