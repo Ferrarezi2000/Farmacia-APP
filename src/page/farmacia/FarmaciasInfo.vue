@@ -48,7 +48,7 @@
                                     <div class="md-inset" v-for="item in farmacia.contatos" :key="item.id">
                                         <md-layout style="font-size: 14px">
                                             <md-layout md-flex="65">
-                                                {{ item.texto }}
+                                                {{ item.numero }}
                                             </md-layout>
                                             <md-layout >
                                                 {{ item.tipo }}
